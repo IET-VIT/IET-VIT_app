@@ -7,14 +7,7 @@
         android:enabled="true"
         android:title="Chats"
         android:icon="@drawable/ic_chats_nav"
-        app:showAsAction="ifRoom" />
-
-    <item
-        android:enabled="false"
-        android:title="Timeline"
-        app:showAsAction="always"
-        android:checkable="false"
-        android:checked="false" />
+        app:showAsAction="ifRoom|withText" />
 
     <item
         android:id="@+id/action_view_dashboard"
