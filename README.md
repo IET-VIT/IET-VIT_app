@@ -27,6 +27,8 @@ _To be extended_
    - [x] All major dependencies added.
    - [x] Basic App structure and activities.
    - [x] Firebase connected
+- 5th September, 2020.
+   - [x] ProfileActivity and MainActivity XML.
 
 ## 📚 Tech Stack:
 - <code><img height="38" src="https://i1.pngguru.com/preview/736/783/702/macos-app-icons-android-studio-png-icon.jpg"></code> Android Studio
