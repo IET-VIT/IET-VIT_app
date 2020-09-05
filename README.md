@@ -23,7 +23,11 @@ _To be extended_
 - 3rd September, 2020.
    - [x] Repository created.
    - [x] README.md file created.
-   
+- 4th September, 2020.
+   - [x] All major dependencies added.
+   - [x] Basic App structure and activities.
+   - [x] Firebase connected
+
 ## 📚 Tech Stack:
 - <code><img height="38" src="https://i1.pngguru.com/preview/736/783/702/macos-app-icons-android-studio-png-icon.jpg"></code> Android Studio
 - <code><img height="38" src="https://github.com/edent/SuperTinyIcons/blob/master/images/svg/github.svg"></code> Github
