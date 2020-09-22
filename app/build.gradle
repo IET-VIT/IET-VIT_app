@@ -47,7 +47,7 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.3'
 
     //Firebase
-    implementation 'com.google.firebase:firebase-auth:19.3.2'
+    implementation 'com.google.firebase:firebase-auth:19.4.0'
     implementation 'com.google.firebase:firebase-database:19.4.0'
     implementation 'com.google.firebase:firebase-storage:19.2.0'
 
