@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">IET-Events</string>
+    <string name="google_login">Login with Google</string>
+    <string name="github_login">Login with Github</string>
+    <string name="email_login">Login with E-mail</string>
+    <string name="e_mail">E-mail</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
 </resources>
