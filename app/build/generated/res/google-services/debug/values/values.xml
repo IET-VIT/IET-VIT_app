@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="default_web_client_id" translatable="false">649285137728-gshjgf2baik54gs6pjs9hu0rckalg4lu.apps.googleusercontent.com</string>
+    <string name="firebase_database_url" translatable="false">https://iet-events-b7788.firebaseio.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">649285137728</string>
+    <string name="google_api_key" translatable="false">AIzaSyB8VQ7EcvMuJaCrmLvfX3GrIMXoOY4thSE</string>
+    <string name="google_app_id" translatable="false">1:649285137728:android:c355621c187abf18b1f6a5</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyB8VQ7EcvMuJaCrmLvfX3GrIMXoOY4thSE</string>
+    <string name="google_storage_bucket" translatable="false">iet-events-b7788.appspot.com</string>
+    <string name="project_id" translatable="false">iet-events-b7788</string>
+</resources>
