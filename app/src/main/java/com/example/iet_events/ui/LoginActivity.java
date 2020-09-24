@@ -1,20 +1,26 @@
 package com.example.iet_events.ui;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.iet_events.MainActivity;
 import com.example.iet_events.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -31,7 +37,9 @@ public class LoginActivity extends AppCompatActivity {
     @BindView(R.id.mail_login_button) Button mail_login_button;
     @BindView(R.id.go_to_register) Button go_to_register;
 
+    private String TAG = "LoginActivity";
     private boolean otherLayoutOpened;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +49,7 @@ public class LoginActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         otherLayoutOpened = false;
+        mAuth = FirebaseAuth.getInstance();
 
         emailLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,6 +80,39 @@ public class LoginActivity extends AppCompatActivity {
                 Snackbar.make(v,"Getting Ready....Page Under Construction :)", Snackbar.LENGTH_LONG).show();
                 //TODO : Setup Register Activity
 //                startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
+            }
+        });
+
+        mail_login_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+                assert imm != null;
+
+                View focusedView = LoginActivity.this.getCurrentFocus();
+                if (focusedView != null) {
+                    imm.hideSoftInputFromWindow(focusedView.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+                }
+
+                String email = String.valueOf(email_login_input.getText());
+                String password = String.valueOf(password_login_input.getText());
+
+                if(email.isEmpty() || password.isEmpty()) {
+                    Snackbar.make(v, "Please enter all the credentials", Snackbar.LENGTH_LONG).show();
+                }else{
+                    mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                                finish();
+                            } else {
+                                Log.e(TAG, "signInWithEmail:failure", task.getException());
+                                Snackbar.make(v, "Authentication failed. Please contact administrator", Snackbar.LENGTH_LONG).show();
+                            }
+                        }
+                    });
+                }
             }
         });
     }

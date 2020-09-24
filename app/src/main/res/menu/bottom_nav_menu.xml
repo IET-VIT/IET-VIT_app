@@ -1,19 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
 
-    <item
-        android:id="@+id/action_chats"
-        android:enabled="true"
-        android:title="Chats"
-        android:icon="@drawable/ic_chats_nav"
-        app:showAsAction="ifRoom|withText" />
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:enabled="true"
+            android:icon="@drawable/ic_home_nav"
+            android:title="Home"
+            app:showAsAction="ifRoom|withText" />
 
-    <item
-        android:id="@+id/action_view_dashboard"
-        android:enabled="true"
-        android:title="Dashboard"
-        android:icon="@drawable/ic_dashboard_nav"
-        app:showAsAction="withText" />
+        <item
+            android:id="@+id/nav_dashboard"
+            android:enabled="true"
+            android:icon="@drawable/ic_dashboard_nav"
+            android:title="Dashboard"
+            app:showAsAction="withText" />
+
+    </group>
+
+    <item android:title="Profile">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_profile"
+                    android:icon="@drawable/ic_name_white"
+                    android:title="Profile" />
+            </group>
+
+                <item
+                    android:id="@+id/action_logout"
+                    android:icon="@drawable/ic_logout"
+                    android:title="Logout" />
+        </menu>
+    </item>
+
 
 </menu>

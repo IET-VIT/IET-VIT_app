@@ -28,7 +28,9 @@
         android:theme="@style/AppTheme" >
         <activity android:name="com.example.iet_events.ui.ProfileActivity" />
         <activity android:name="com.example.iet_events.ui.RegisterActivity" />
-        <activity android:name="com.example.iet_events.ui.LoginActivity" />
+        <activity
+            android:name="com.example.iet_events.ui.LoginActivity"
+            android:theme="@style/AppTheme.DarkActionBar" />
         <activity android:name="com.example.iet_events.MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
