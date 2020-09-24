@@ -6,7 +6,8 @@ _To be extended_
 
 ## App features to be implemented:
 
-- [ ] Login and Register page
+- [x] Login page
+- [ ] Registration through Github and Google
 - [ ] Tasks (Separate for Admins and others)
 - [ ] Messaging (Room SQL)
 - [ ] Media & Live Streaming
@@ -29,6 +30,14 @@ _To be extended_
    - [x] Firebase connected
 - 5th September, 2020.
    - [x] ProfileActivity and MainActivity XML.
+- 22nd September, 2020.
+   - [x] LoginActivity Design
+   - [x] Email authentication implemented
+   - [x] Color Scheme updated
+- 24th September, 2020.
+   - [x] Added Navigation Drawer
+   - [x] Removed AppBar due to bad design
+   - [x] Added Fragments
 
 ## 📚 Tech Stack:
 - <code><img height="38" src="https://i1.pngguru.com/preview/736/783/702/macos-app-icons-android-studio-png-icon.jpg"></code> Android Studio
