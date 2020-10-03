@@ -51,7 +51,7 @@ dependencies {
 
     //Firebase
     implementation 'com.google.firebase:firebase-auth:19.4.0'
-    implementation 'com.google.firebase:firebase-database:19.4.0'
+    implementation 'com.google.firebase:firebase-database:19.5.0'
     implementation 'com.google.firebase:firebase-storage:19.2.0'
 
     //Room SQL
@@ -74,4 +74,8 @@ dependencies {
     implementation 'com.google.android.exoplayer:exoplayer-core:2.10.3'
     implementation 'com.google.android.exoplayer:exoplayer-dash:2.10.3'
     implementation 'com.google.android.exoplayer:exoplayer-ui:2.10.3'
+
+    //qr code generator and scanner
+    implementation 'com.google.zxing:core:3.2.1'
+    implementation 'com.journeyapps:zxing-android-embedded:3.2.0@aar'
 }
