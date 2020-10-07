@@ -12,7 +12,7 @@ _To be extended_
 - [ ] Messaging (Room SQL)
 - [ ] Media & Live Streaming
 - [ ] Event timeline
-- [ ] QR code generator
+- [x] QR code generator
 - [ ] Quizzes
 - [ ] Landing page/Loading page
 - [ ] About IET-VIT and the Event
