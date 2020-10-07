@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -12,26 +11,39 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.iet_events.database.UserDatabase;
 import com.example.iet_events.fragments.DashboardFragment;
 import com.example.iet_events.fragments.HomeFragment;
 import com.example.iet_events.fragments.ProfileFragment;
+import com.example.iet_events.models.Users;
+import com.example.iet_events.ui.AdminActivity;
 import com.example.iet_events.ui.LoginActivity;
-import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -44,6 +56,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @BindView(R.id.qr_code_button) FloatingActionButton qr_code_button;
 
     private FirebaseAuth mAuth;
+    public static String NAME;
+    public static List<String> tasksList;
+    public static List<String> roleList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,7 +97,39 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if(currentUser != null) {
-            Toast.makeText(MainActivity.this,"Signed-In", Toast.LENGTH_LONG).show();
+            UserDatabase userDatabase = UserDatabase.getInstance(MainActivity.this);
+            DatabaseReference mRef = FirebaseDatabase.getInstance().getReference("Users");
+            mRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if(snapshot.exists()){
+                        for (DataSnapshot data : snapshot.getChildren()) {
+                            if(currentUser.getUid().equals(data.getKey())) {
+                                NAME = String.valueOf(data.child("Name").getValue());
+                                TextView nav_name_text = nav_view.findViewById(R.id.nav_name_text);
+                                TextView nav_mail_text = nav_view.findViewById(R.id.nav_mail_text);
+                                nav_name_text.setText(NAME);
+                                nav_mail_text.setText(currentUser.getEmail());
+                                tasksList = new ArrayList<>();
+                                roleList = new ArrayList<>();
+                                for (DataSnapshot taskData : data.child("tasks").getChildren()) {
+                                    tasksList.add(String.valueOf(taskData.getValue()));
+                                    roleList.add(taskData.getKey());
+                                }
+                            }
+                            String userID = data.getKey();
+                            Users user = data.getValue(Users.class).withID(userID);
+                            userDatabase.UserDao().insertUser(user);
+                        }
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                    Toast.makeText(MainActivity.this, "Database Error : " + error.getMessage(),Toast.LENGTH_SHORT).show();
+                }
+            });
+
         }else{
             sendToLogin();
         }
@@ -117,6 +164,26 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        switch (item.getItemId()){
+
+            case R.id.action_admin:
+                startActivity(new Intent(MainActivity.this, AdminActivity.class));
+
+                return true;
+
+            default:
+                return false;
+        }
+    }
 
     private void sendToLogin() {
         Intent intent = new Intent(MainActivity.this, LoginActivity.class);
