@@ -34,8 +34,8 @@
                         <option name="values">
                           <map>
                             <entry key="assetSourceType" value="FILE" />
-                            <entry key="outputName" value="qr_code" />
-                            <entry key="sourceFile" value="$USER_HOME$/Downloads/qr-code.svg" />
+                            <entry key="outputName" value="ic_admin" />
+                            <entry key="sourceFile" value="$USER_HOME$/Downloads/admin-with-cogwheels.svg" />
                           </map>
                         </option>
                       </PersistentState>

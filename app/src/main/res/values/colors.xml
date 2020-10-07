@@ -8,4 +8,7 @@
     <color name="Black">#000000</color>
 
     <color name="OffWhite">#FAF8F2</color>
+
+    <color name="SeaGreen">#5CDAC0</color>
+    <color name="Purple">#405FDB</color>
 </resources>

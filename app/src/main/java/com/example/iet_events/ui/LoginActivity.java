@@ -94,7 +94,7 @@ public class LoginActivity extends AppCompatActivity {
                     imm.hideSoftInputFromWindow(focusedView.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
                 }
 
-                String email = String.valueOf(email_login_input.getText());
+                String email = String.valueOf(email_login_input.getText()).trim();
                 String password = String.valueOf(password_login_input.getText());
 
                 if(email.isEmpty() || password.isEmpty()) {
