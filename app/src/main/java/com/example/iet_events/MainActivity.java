@@ -10,13 +10,13 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -54,6 +54,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @BindView(R.id.nav_view) NavigationView nav_view;
     @BindView(R.id.main_toolbar) Toolbar main_toolbar;
     @BindView(R.id.qr_code_button) FloatingActionButton qr_code_button;
+    @BindView(R.id.nav_bottom_lyt_link) LinearLayout nav_bottom_lyt_link;
 
     private FirebaseAuth mAuth;
     public static String NAME;
@@ -89,6 +90,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 qrDialogBox();
             }
         });
+
+        nav_bottom_lyt_link.setOnClickListener(v -> {
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.ietvit.com")));
+        });
     }
 
     @Override
@@ -98,6 +103,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if(currentUser != null) {
             UserDatabase userDatabase = UserDatabase.getInstance(MainActivity.this);
+            userDatabase.UserDao().clearDb();
             DatabaseReference mRef = FirebaseDatabase.getInstance().getReference("Users");
             mRef.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
@@ -112,7 +118,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                                 nav_mail_text.setText(currentUser.getEmail());
                                 tasksList = new ArrayList<>();
                                 roleList = new ArrayList<>();
-                                for (DataSnapshot taskData : data.child("tasks").getChildren()) {
+                                for (DataSnapshot taskData : data.child("Tasks").getChildren()) {
                                     tasksList.add(String.valueOf(taskData.getValue()));
                                     roleList.add(taskData.getKey());
                                 }
@@ -154,6 +160,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.nav_profile:
                 getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment, new ProfileFragment()).commit();
+                break;
+            case R.id.action_visit_website:
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.hackoff.tech")));
                 break;
             case R.id.action_logout:
                 mAuth.signOut();
@@ -199,7 +208,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         ImageView qr_code = updateDialog.findViewById(R.id.qr_code_image);
 
-        String qr_text = "Get Ready for the best of IET";
+//        String qr_text = "Get Ready for the best of IET";
+        String qr_text = NAME + "\n" + mAuth.getCurrentUser().getEmail();
         MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
         try {
             BitMatrix bitMatrix = multiFormatWriter.encode(qr_text, BarcodeFormat.QR_CODE,450,450);
