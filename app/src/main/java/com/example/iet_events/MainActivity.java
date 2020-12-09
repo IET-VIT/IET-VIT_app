@@ -91,9 +91,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
-        nav_bottom_lyt_link.setOnClickListener(v -> {
-            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.ietvit.com")));
-        });
+        nav_bottom_lyt_link.setOnClickListener(v -> startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.ietvit.com"))));
     }
 
     @Override
@@ -182,16 +180,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
-        switch (item.getItemId()){
+        if (item.getItemId() == R.id.action_admin) {
+            startActivity(new Intent(MainActivity.this, AdminActivity.class));
 
-            case R.id.action_admin:
-                startActivity(new Intent(MainActivity.this, AdminActivity.class));
-
-                return true;
-
-            default:
-                return false;
+            return true;
         }
+        return false;
     }
 
     private void sendToLogin() {

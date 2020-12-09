@@ -1,7 +1,6 @@
 package com.example.iet_events.utils;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +16,7 @@ import com.example.iet_events.models.Users;
 
 import java.util.List;
 
+import static com.example.iet_events.fragments.AdminTaskFragment.domain_spinner;
 import static com.example.iet_events.fragments.AdminTaskFragment.uploadTaskUserList;
 
 public class AdminTaskAdapter extends RecyclerView.Adapter<AdminTaskAdapter.ViewHolder> {
@@ -26,7 +26,6 @@ public class AdminTaskAdapter extends RecyclerView.Adapter<AdminTaskAdapter.View
 
     public AdminTaskAdapter(List<Users> fullList){
         this.fullList = fullList;
-        notifyDataSetChanged();
     }
 
     @NonNull
@@ -41,21 +40,21 @@ public class AdminTaskAdapter extends RecyclerView.Adapter<AdminTaskAdapter.View
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Users user = fullList.get(position);
 
-        if(uploadTaskUserList.contains(user.getName())){
-            holder.checkbox_card_item.setChecked(true);
-        }else{
-            holder.checkbox_card_item.setChecked(false);
-        }
-
+        holder.checkbox_card_item.setOnCheckedChangeListener(null);
         holder.name_card_item.setText(user.getName());
         holder.role_card_item.setText(user.getRole());
+
         holder.checkbox_card_item.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
-                    uploadTaskUserList.add(user.UserID);
-                }else {
-                    uploadTaskUserList.remove(user.UserID);
+                if(isChecked) {
+                    uploadTaskUserList.add(user);
+                    domain_spinner.setEnabled(false);
+                }
+                else {
+                    uploadTaskUserList.remove(user);
+                    if(uploadTaskUserList.isEmpty())
+                        domain_spinner.setEnabled(true);
                 }
             }
         });
@@ -69,7 +68,6 @@ public class AdminTaskAdapter extends RecyclerView.Adapter<AdminTaskAdapter.View
     public void notify(List<Users> list){
         this.fullList = list;
         notifyDataSetChanged();
-        Log.e("info",uploadTaskUserList.size() + " Hi");
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

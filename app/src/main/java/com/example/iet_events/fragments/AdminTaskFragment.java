@@ -6,7 +6,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,18 +33,14 @@ import butterknife.ButterKnife;
 
 public class AdminTaskFragment extends Fragment {
 
-    @BindView(R.id.domain_spinner)
-    Spinner domain_spinner;
-    @BindView(R.id.users_recyclerview)
-    RecyclerView users_recyclerview;
-    @BindView(R.id.post_task_button)
-    Button post_task_button;
-    @BindView(R.id.admin_task_description)
-    EditText admin_task_description;
-    @BindView(R.id.admin_task_code)
-    EditText admin_task_code;
+    public static Spinner domain_spinner;
+    @BindView(R.id.users_recyclerview) RecyclerView users_recyclerview;
+    @BindView(R.id.post_task_button) Button post_task_button;
+    @BindView(R.id.admin_task_description) EditText admin_task_description;
+    @BindView(R.id.admin_task_code) EditText admin_task_code;
+    @BindView(R.id.name_filter) EditText name_filter;
 
-    public static List<String> uploadTaskUserList;
+    public static List<Users> uploadTaskUserList;
     private List<Users> usersList;
 
     private AdminTaskAdapter adminTaskAdapter;
@@ -57,6 +54,7 @@ public class AdminTaskFragment extends Fragment {
 
         ButterKnife.bind(this, root);
 
+        domain_spinner = root.findViewById(R.id.domain_spinner);
         String[] items = new String[]{"All", "Admin", "Tech", "Design", "Media", "Publicity", "External", "Editorial"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, items);
         domain_spinner.setAdapter(adapter);
@@ -65,13 +63,35 @@ public class AdminTaskFragment extends Fragment {
         usersList = userDb.UserDao().loadAllUsers();
 
         adminTaskAdapter = new AdminTaskAdapter(usersList);
-
         uploadTaskUserList = new ArrayList<>();
 
         LinearLayoutManager mLayout = new LinearLayoutManager(getContext());
         users_recyclerview.setHasFixedSize(true);
         users_recyclerview.setLayoutManager(mLayout);
         users_recyclerview.setAdapter(adminTaskAdapter);
+
+        name_filter.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                String text = s.toString();
+                List<Users> filteredList = new ArrayList<>();
+
+                for(Users item : usersList){
+                    if(item.getName().toLowerCase().contains(text.toLowerCase().trim())){
+                        filteredList.add(item);
+                    }
+                }
+                adminTaskAdapter.notify(filteredList);
+            }
+        });
 
         domain_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -95,8 +115,8 @@ public class AdminTaskFragment extends Fragment {
             String tasks_code = admin_task_code.getText().toString();
             if (!tasks_description.isEmpty() && !tasks_code.isEmpty()) {
                 DatabaseReference mRef = FirebaseDatabase.getInstance().getReference("Users");
-                for (String user : uploadTaskUserList) {
-                    mRef.child(user).child("Tasks").child(tasks_code).setValue(tasks_description);
+                for (Users user : uploadTaskUserList) {
+                    mRef.child(user.UserID).child("Tasks").child(tasks_code).setValue(tasks_description);
                 }
             } else {
                 Snackbar.make(v, "Please enter the code & description", Snackbar.LENGTH_LONG).show();
