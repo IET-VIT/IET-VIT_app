@@ -17,7 +17,7 @@
         app:layout_constraintTop_toBottomOf="@+id/admin_task_description">
 
         <EditText
-            android:id="@+id/editTextTextPersonName"
+            android:id="@+id/name_filter"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:layout_margin="16dp"

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">IET-Events</string>
+    <string name="app_name">IET-VIT</string>
     <string name="google_login">Login with Google</string>
     <string name="github_login">Login with Github</string>
     <string name="email_login">Login with E-mail</string>

@@ -8,7 +8,7 @@ import androidx.room.RoomDatabase;
 
 import com.example.iet_events.models.Users;
 
-@Database(entities = {Users.class}, version = 1, exportSchema = false)
+@Database(entities = {Users.class}, version = 2, exportSchema = false)
 public abstract class UserDatabase extends RoomDatabase {
 
     private static final String DATABASE_NAME = "userDb";

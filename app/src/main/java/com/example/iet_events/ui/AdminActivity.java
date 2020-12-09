@@ -18,7 +18,7 @@ import butterknife.ButterKnife;
 
 public class AdminActivity extends AppCompatActivity {
 
-    @BindView(R.id.tasks_card) CardView tasks_card;
+    @BindView(R.id.add_tasks_card) CardView add_tasks_card;
     @BindView(R.id.admin_frame) FrameLayout admin_frame;
     @BindView(R.id.admin_main_layout) ConstraintLayout admin_main_layout;
     @BindView(R.id.admin_toolbar) Toolbar admin_toolbar;
@@ -38,7 +38,7 @@ public class AdminActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
 
-        tasks_card.setOnClickListener(v -> {
+        add_tasks_card.setOnClickListener(v -> {
             admin_frame.setVisibility(View.VISIBLE);
             admin_main_layout.setVisibility(View.GONE);
             getSupportFragmentManager().beginTransaction().replace(R.id.admin_frame, new AdminTaskFragment()).commit();
