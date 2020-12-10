@@ -9,6 +9,7 @@ _To be extended_
 - [x] Login page
 - [ ] Registration through Github and Google
 - [ ] Tasks (Separate for Admins and others)
+- [ ] Meetings
 - [ ] Messaging (Room SQL)
 - [ ] Media & Live Streaming
 - [ ] Event timeline
@@ -38,6 +39,13 @@ _To be extended_
    - [x] Added Navigation Drawer
    - [x] Removed AppBar due to bad design
    - [x] Added Fragments
+- Till 10th December 2020
+   - [x] Added AdminActivity and fragments
+   - [x] Added Tasks creation and User and Task models
+   - [x] Added User Database 
+   - [x] Major Bug fixes and UI improvement and Logo addition
+   - [x] Added QR code 
+   - [x] Change in the structure of data in firebase
 
 ## 📚 Tech Stack:
 - <code><img height="38" src="https://i1.pngguru.com/preview/736/783/702/macos-app-icons-android-studio-png-icon.jpg"></code> Android Studio
