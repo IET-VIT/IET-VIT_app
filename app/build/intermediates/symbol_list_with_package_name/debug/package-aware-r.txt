@@ -1193,6 +1193,8 @@ color foreground_material_dark
 color foreground_material_light
 color highlighted_text_material_dark
 color highlighted_text_material_light
+color lightGreen
+color lightRed
 color material_blue_grey_800
 color material_blue_grey_900
 color material_blue_grey_950
@@ -1906,6 +1908,7 @@ drawable material_ic_keyboard_arrow_left_black_24dp
 drawable material_ic_keyboard_arrow_right_black_24dp
 drawable material_ic_menu_arrow_down_black_24dp
 drawable material_ic_menu_arrow_up_black_24dp
+drawable meeting
 drawable mtrl_dialog_background
 drawable mtrl_dropdown_arrow
 drawable mtrl_ic_arrow_drop_down
@@ -2237,6 +2240,7 @@ id mail_login_button
 id main_toolbar
 id masked
 id media_actions
+id meeting_card
 id message
 id middle
 id mini
@@ -2400,6 +2404,7 @@ id tag_transition_group
 id tag_unhandled_key_event_manager
 id tag_unhandled_key_listeners
 id task_desc
+id task_item_layout
 id task_role
 id tasks_recycler_view
 id test_checkbox_android_button_tint

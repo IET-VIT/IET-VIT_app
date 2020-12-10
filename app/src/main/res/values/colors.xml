@@ -11,4 +11,7 @@
 
     <color name="SeaGreen">#5CDAC0</color>
     <color name="Purple">#3D38CA</color>
+
+    <color name="lightRed">#ED9292</color>
+    <color name="lightGreen">#8DE38E</color>
 </resources>

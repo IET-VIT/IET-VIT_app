@@ -29,7 +29,7 @@ public final class UserDao_Impl implements UserDao {
     this.__insertionAdapterOfUsers = new EntityInsertionAdapter<Users>(__db) {
       @Override
       public String createQuery() {
-        return "INSERT OR ABORT INTO `userDb`(`UserID`,`primary_key`,`Name`,`Role`,`checkBoxTask`) VALUES (?,nullif(?, 0),?,?,?)";
+        return "INSERT OR ABORT INTO `userDb`(`UserID`,`primary_key`,`Name`,`Role`) VALUES (?,nullif(?, 0),?,?)";
       }
 
       @Override
@@ -50,9 +50,6 @@ public final class UserDao_Impl implements UserDao {
         } else {
           stmt.bindString(4, value.getRole());
         }
-        final int _tmp;
-        _tmp = value.isCheckBoxTask() ? 1 : 0;
-        stmt.bindLong(5, _tmp);
       }
     };
     this.__deletionAdapterOfUsers = new EntityDeletionOrUpdateAdapter<Users>(__db) {
@@ -120,7 +117,6 @@ public final class UserDao_Impl implements UserDao {
       final int _cursorIndexOfPrimaryKey = _cursor.getColumnIndexOrThrow("primary_key");
       final int _cursorIndexOfName = _cursor.getColumnIndexOrThrow("Name");
       final int _cursorIndexOfRole = _cursor.getColumnIndexOrThrow("Role");
-      final int _cursorIndexOfCheckBoxTask = _cursor.getColumnIndexOrThrow("checkBoxTask");
       final List<Users> _result = new ArrayList<Users>(_cursor.getCount());
       while(_cursor.moveToNext()) {
         final Users _item;
@@ -135,11 +131,6 @@ public final class UserDao_Impl implements UserDao {
         final String _tmpRole;
         _tmpRole = _cursor.getString(_cursorIndexOfRole);
         _item.setRole(_tmpRole);
-        final boolean _tmpCheckBoxTask;
-        final int _tmp;
-        _tmp = _cursor.getInt(_cursorIndexOfCheckBoxTask);
-        _tmpCheckBoxTask = _tmp != 0;
-        _item.setCheckBoxTask(_tmpCheckBoxTask);
         _result.add(_item);
       }
       return _result;
@@ -165,7 +156,6 @@ public final class UserDao_Impl implements UserDao {
       final int _cursorIndexOfPrimaryKey = _cursor.getColumnIndexOrThrow("primary_key");
       final int _cursorIndexOfName = _cursor.getColumnIndexOrThrow("Name");
       final int _cursorIndexOfRole = _cursor.getColumnIndexOrThrow("Role");
-      final int _cursorIndexOfCheckBoxTask = _cursor.getColumnIndexOrThrow("checkBoxTask");
       final List<Users> _result = new ArrayList<Users>(_cursor.getCount());
       while(_cursor.moveToNext()) {
         final Users _item;
@@ -180,11 +170,6 @@ public final class UserDao_Impl implements UserDao {
         final String _tmpRole;
         _tmpRole = _cursor.getString(_cursorIndexOfRole);
         _item.setRole(_tmpRole);
-        final boolean _tmpCheckBoxTask;
-        final int _tmp;
-        _tmp = _cursor.getInt(_cursorIndexOfCheckBoxTask);
-        _tmpCheckBoxTask = _tmp != 0;
-        _item.setCheckBoxTask(_tmpCheckBoxTask);
         _result.add(_item);
       }
       return _result;

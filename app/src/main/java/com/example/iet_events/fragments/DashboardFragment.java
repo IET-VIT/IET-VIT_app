@@ -16,8 +16,7 @@ import com.example.iet_events.utils.TaskAdapter;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import static com.example.iet_events.MainActivity.roleList;
-import static com.example.iet_events.MainActivity.tasksList;
+import static com.example.iet_events.MainActivity.taskList;
 
 public class DashboardFragment extends Fragment {
 
@@ -32,7 +31,7 @@ public class DashboardFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_dashboard, container, false);
         ButterKnife.bind(this, root);
 
-        TaskAdapter taskAdapter = new TaskAdapter(tasksList, roleList);
+        TaskAdapter taskAdapter = new TaskAdapter(taskList);
         LinearLayoutManager mLayout = new LinearLayoutManager(getContext());
         tasks_recycler_view.setHasFixedSize(true);
         tasks_recycler_view.setLayoutManager(mLayout);

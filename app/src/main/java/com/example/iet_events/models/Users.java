@@ -9,7 +9,6 @@ public class Users extends UserID{
     @PrimaryKey(autoGenerate = true)
     private int primary_key;
     private String Name, Role;
-    private boolean checkBoxTask;
 
     public Users() {
     }
@@ -36,13 +35,5 @@ public class Users extends UserID{
 
     public void setPrimary_key(int primary_key) {
         this.primary_key = primary_key;
-    }
-
-    public boolean isCheckBoxTask() {
-        return checkBoxTask;
-    }
-
-    public void setCheckBoxTask(boolean checkBoxTask) {
-        this.checkBoxTask = checkBoxTask;
     }
 }

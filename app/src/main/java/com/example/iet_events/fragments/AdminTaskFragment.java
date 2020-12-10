@@ -26,7 +26,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -55,7 +57,7 @@ public class AdminTaskFragment extends Fragment {
         ButterKnife.bind(this, root);
 
         domain_spinner = root.findViewById(R.id.domain_spinner);
-        String[] items = new String[]{"All", "Admin", "Tech", "Design", "Media", "Publicity", "External", "Editorial"};
+        String[] items = new String[]{"All", "Board", "Admin", "Tech", "Design", "Media", "Publicity", "External", "Editorial"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, items);
         domain_spinner.setAdapter(adapter);
 
@@ -111,12 +113,15 @@ public class AdminTaskFragment extends Fragment {
         });
 
         post_task_button.setOnClickListener(v -> {
-            String tasks_description = admin_task_description.getText().toString();
-            String tasks_code = admin_task_code.getText().toString();
-            if (!tasks_description.isEmpty() && !tasks_code.isEmpty()) {
+            String task_description = admin_task_description.getText().toString();
+            String task_code = admin_task_code.getText().toString();
+            if (!task_description.isEmpty() && !task_code.isEmpty()) {
+                Map<String, String> taskMap = new HashMap<>();
+                taskMap.put("Description", task_description);
+                taskMap.put("Status", "Not Done");
                 DatabaseReference mRef = FirebaseDatabase.getInstance().getReference("Users");
                 for (Users user : uploadTaskUserList) {
-                    mRef.child(user.UserID).child("Tasks").child(tasks_code).setValue(tasks_description);
+                    mRef.child(user.UserID).child("Task").child(task_code).setValue(taskMap);
                 }
             } else {
                 Snackbar.make(v, "Please enter the code & description", Snackbar.LENGTH_LONG).show();

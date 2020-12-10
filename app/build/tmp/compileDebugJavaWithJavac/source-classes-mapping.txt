@@ -1,15 +1,19 @@
+com/example/iet_events/models/Task.java
+ com.example.iet_events.models.Task
 com/example/iet_events/models/Users.java
  com.example.iet_events.models.Users
 com/example/iet_events/MainActivity.java
  com.example.iet_events.MainActivity
  com.example.iet_events.MainActivity$1
  com.example.iet_events.MainActivity$2
+ com.example.iet_events.MainActivity$3
 com/example/iet_events/utils/AdminTaskAdapter.java
  com.example.iet_events.utils.AdminTaskAdapter
  com.example.iet_events.utils.AdminTaskAdapter$1
  com.example.iet_events.utils.AdminTaskAdapter$ViewHolder
 com/example/iet_events/ui/AdminActivity.java
  com.example.iet_events.ui.AdminActivity
+ com.example.iet_events.ui.AdminActivity$1
 com/example/iet_events/fragments/DashboardFragment.java
  com.example.iet_events.fragments.DashboardFragment
 com/example/iet_events/database/UserDao.java
@@ -32,6 +36,9 @@ com/example/iet_events/fragments/AdminTaskFragment.java
  com.example.iet_events.fragments.AdminTaskFragment$2
 com/example/iet_events/utils/TaskAdapter.java
  com.example.iet_events.utils.TaskAdapter
+ com.example.iet_events.utils.TaskAdapter$1
+ com.example.iet_events.utils.TaskAdapter$1$1
+ com.example.iet_events.utils.TaskAdapter$1$2
  com.example.iet_events.utils.TaskAdapter$ViewHolder
 com/example/iet_events/models/UserID.java
  com.example.iet_events.models.UserID
@@ -45,3 +52,5 @@ com/example/iet_events/BuildConfig.java
  com.example.iet_events.BuildConfig
 com/example/iet_events/ui/RegisterActivity.java
  com.example.iet_events.ui.RegisterActivity
+com/example/iet_events/models/TaskId.java
+ com.example.iet_events.models.TaskId
