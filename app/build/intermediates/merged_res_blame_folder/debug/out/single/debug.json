@@ -192,6 +192,10 @@
         "source": "/Users/sukesh/AndroidStudioProjects/IET-Events/app/src/main/res/layout/activity_main.xml"
     },
     {
+        "merged": "/Users/sukesh/AndroidStudioProjects/IET-Events/app/build/intermediates/res/merged/debug/drawable_meeting.png.flat",
+        "source": "/Users/sukesh/AndroidStudioProjects/IET-Events/app/src/main/res/drawable/meeting.png"
+    },
+    {
         "merged": "/Users/sukesh/AndroidStudioProjects/IET-Events/app/build/intermediates/res/merged/debug/drawable_ic_launcher_background.xml.flat",
         "source": "/Users/sukesh/AndroidStudioProjects/IET-Events/app/src/main/res/drawable/ic_launcher_background.xml"
     },

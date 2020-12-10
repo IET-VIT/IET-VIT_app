@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -50,6 +51,9 @@ public class LoginActivity extends AppCompatActivity {
 
         otherLayoutOpened = false;
         mAuth = FirebaseAuth.getInstance();
+
+        SharedPreferences loginPrefs = getSharedPreferences("LoginInfo", MODE_PRIVATE);
+        SharedPreferences.Editor Ed = loginPrefs.edit();
 
         emailLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,6 +108,9 @@ public class LoginActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
+                                Ed.putString("UserId", mAuth.getUid());
+                                Ed.putString("Email", email);
+                                Ed.commit();
                                 startActivity(new Intent(LoginActivity.this, MainActivity.class));
                                 finish();
                             } else {

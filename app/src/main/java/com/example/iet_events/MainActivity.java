@@ -9,6 +9,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
@@ -20,11 +21,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.iet_events.database.UserDatabase;
 import com.example.iet_events.fragments.DashboardFragment;
 import com.example.iet_events.fragments.HomeFragment;
 import com.example.iet_events.fragments.ProfileFragment;
-import com.example.iet_events.models.Users;
+import com.example.iet_events.models.Task;
 import com.example.iet_events.ui.AdminActivity;
 import com.example.iet_events.ui.LoginActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -55,11 +55,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @BindView(R.id.main_toolbar) Toolbar main_toolbar;
     @BindView(R.id.qr_code_button) FloatingActionButton qr_code_button;
     @BindView(R.id.nav_bottom_lyt_link) LinearLayout nav_bottom_lyt_link;
+    private TextView nav_name_text, nav_mail_text;
 
     private FirebaseAuth mAuth;
-    public static String NAME;
-    public static List<String> tasksList;
-    public static List<String> roleList;
+    public static String NAME, ROLE, USER_ID;
+    public static List<Task> taskList;
+    private SharedPreferences loginPrefs;
+    private String name_check;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,18 +71,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         ButterKnife.bind(this);
         setSupportActionBar(main_toolbar);
 
-        NavigationView navigationView = findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer_layout, main_toolbar, R.string.nav_drawer_open, R.string.nav_drawer_close);
         drawer_layout.addDrawerListener(toggle);
         toggle.syncState();
 
         if(savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment, new HomeFragment()).commit();
-            navigationView.setCheckedItem(R.id.nav_home);
+            nav_view.setCheckedItem(R.id.nav_home);
         }
         nav_view.setNavigationItemSelectedListener(this);
+        nav_name_text = nav_view.getHeaderView(0).findViewById(R.id.nav_name_text);
+        nav_mail_text = nav_view.getHeaderView(0).findViewById(R.id.nav_mail_text);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -98,45 +99,67 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void onStart() {
         super.onStart();
 
+        loginPrefs = getSharedPreferences("LoginInfo", MODE_PRIVATE);
+        name_check = loginPrefs.getString("Name", null);
+        USER_ID = loginPrefs.getString("UserId", null);
+
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if(currentUser != null) {
-            UserDatabase userDatabase = UserDatabase.getInstance(MainActivity.this);
-            userDatabase.UserDao().clearDb();
-            DatabaseReference mRef = FirebaseDatabase.getInstance().getReference("Users");
-            mRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    if(snapshot.exists()){
-                        for (DataSnapshot data : snapshot.getChildren()) {
-                            if(currentUser.getUid().equals(data.getKey())) {
-                                NAME = String.valueOf(data.child("Name").getValue());
-                                TextView nav_name_text = nav_view.findViewById(R.id.nav_name_text);
-                                TextView nav_mail_text = nav_view.findViewById(R.id.nav_mail_text);
-                                nav_name_text.setText(NAME);
-                                nav_mail_text.setText(currentUser.getEmail());
-                                tasksList = new ArrayList<>();
-                                roleList = new ArrayList<>();
-                                for (DataSnapshot taskData : data.child("Tasks").getChildren()) {
-                                    tasksList.add(String.valueOf(taskData.getValue()));
-                                    roleList.add(taskData.getKey());
-                                }
-                            }
-                            String userID = data.getKey();
-                            Users user = data.getValue(Users.class).withID(userID);
-                            userDatabase.UserDao().insertUser(user);
+            SharedPreferences.Editor Ed = loginPrefs.edit();
+
+            if(name_check == null) {
+                DatabaseReference mRef = FirebaseDatabase.getInstance().getReference("Users");
+                mRef.child(USER_ID).addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if (snapshot.exists()) {
+                            NAME = String.valueOf(snapshot.child("Name").getValue());
+                            Ed.putString("Name", NAME);
+                            ROLE = String.valueOf(snapshot.child("Role").getValue());
+                            Ed.putString("Role", ROLE);
+                            Ed.commit();
+                            nav_name_text.setText(NAME);
+                            nav_mail_text.setText(currentUser.getEmail());
+                            fetchTasks(USER_ID);
                         }
                     }
-                }
 
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-                    Toast.makeText(MainActivity.this, "Database Error : " + error.getMessage(),Toast.LENGTH_SHORT).show();
-                }
-            });
-
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        Toast.makeText(MainActivity.this, "Database Error : " + error.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }else {
+                NAME = loginPrefs.getString("Name",null);
+                ROLE = loginPrefs.getString("Role",null);
+                nav_name_text.setText(NAME);
+                nav_mail_text.setText(loginPrefs.getString("Email",null));
+                fetchTasks(USER_ID);
+            }
         }else{
             sendToLogin();
         }
+    }
+
+    public void fetchTasks(String userId){
+        taskList = new ArrayList<>();
+        DatabaseReference mRef = FirebaseDatabase.getInstance().getReference("Users");
+        mRef.child(userId).child("Tasks").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    for (DataSnapshot taskSnap : snapshot.getChildren()) {
+                        Task task = taskSnap.getValue(Task.class).withId(taskSnap.getKey());
+                        taskList.add(task);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(MainActivity.this, "Database Error : " + error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override
@@ -181,14 +204,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
         if (item.getItemId() == R.id.action_admin) {
-            startActivity(new Intent(MainActivity.this, AdminActivity.class));
-
+            if(ROLE.equals("Board"))
+                startActivity(new Intent(MainActivity.this, AdminActivity.class));
+            else
+                Toast.makeText(MainActivity.this, "Work harder to be a Board member :)",Toast.LENGTH_LONG).show();
             return true;
         }
         return false;
     }
 
     private void sendToLogin() {
+        SharedPreferences.Editor Ed = loginPrefs.edit();
+        Ed.putString("Name", null);
+        Ed.putString("UserId", null);
+        Ed.putString("Email", null);
+        Ed.putString("Role", null);
+        Ed.commit();
         Intent intent = new Intent(MainActivity.this, LoginActivity.class);
         startActivity(intent);
         finish();

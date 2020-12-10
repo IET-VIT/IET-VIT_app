@@ -7,8 +7,10 @@
     android:layout_marginEnd="8dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/task_item_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/lightRed">
 
         <TextView
             android:id="@+id/task_desc"
@@ -34,7 +36,7 @@
             android:layout_marginEnd="16dp"
             android:fontFamily="@font/pacifico"
             android:text="Loading"
-            android:textColor="@color/colorAccent"
+            android:textColor="@color/Purple"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
