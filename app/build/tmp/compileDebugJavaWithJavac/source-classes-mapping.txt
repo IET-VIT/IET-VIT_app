@@ -28,6 +28,11 @@ com/example/iet_events/ui/LoginActivity.java
  com.example.iet_events.ui.LoginActivity$4
  com.example.iet_events.ui.LoginActivity$5
  com.example.iet_events.ui.LoginActivity$5$1
+com/example/iet_events/fragments/AddMeetingFragment.java
+ com.example.iet_events.fragments.AddMeetingFragment
+ com.example.iet_events.fragments.AddMeetingFragment$1
+ com.example.iet_events.fragments.AddMeetingFragment$2
+ com.example.iet_events.fragments.AddMeetingFragment$3
 com/example/iet_events/fragments/HomeFragment.java
  com.example.iet_events.fragments.HomeFragment
 com/example/iet_events/fragments/AdminTaskFragment.java

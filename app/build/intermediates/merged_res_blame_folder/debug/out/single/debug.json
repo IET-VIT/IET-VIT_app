@@ -4,12 +4,12 @@
         "source": "/Users/sukesh/AndroidStudioProjects/IET-Events/app/src/main/res/font/pacifico.ttf"
     },
     {
-        "merged": "/Users/sukesh/AndroidStudioProjects/IET-Events/app/build/intermediates/res/merged/debug/drawable_ic_name_white.xml.flat",
-        "source": "/Users/sukesh/AndroidStudioProjects/IET-Events/app/src/main/res/drawable/ic_name_white.xml"
-    },
-    {
         "merged": "/Users/sukesh/AndroidStudioProjects/IET-Events/app/build/intermediates/res/merged/debug/mipmap-mdpi_ic_launcher_round.png.flat",
         "source": "/Users/sukesh/AndroidStudioProjects/IET-Events/app/src/main/res/mipmap-mdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "/Users/sukesh/AndroidStudioProjects/IET-Events/app/build/intermediates/res/merged/debug/drawable_ic_name_white.xml.flat",
+        "source": "/Users/sukesh/AndroidStudioProjects/IET-Events/app/src/main/res/drawable/ic_name_white.xml"
     },
     {
         "merged": "/Users/sukesh/AndroidStudioProjects/IET-Events/app/build/intermediates/res/merged/debug/mipmap-hdpi_ic_launcher.png.flat",
@@ -24,32 +24,32 @@
         "source": "/Users/sukesh/AndroidStudioProjects/IET-Events/app/src/main/res/drawable/ic_home_nav.xml"
     },
     {
-        "merged": "/Users/sukesh/AndroidStudioProjects/IET-Events/app/build/intermediates/res/merged/debug/drawable_text_background.xml.flat",
-        "source": "/Users/sukesh/AndroidStudioProjects/IET-Events/app/src/main/res/drawable/text_background.xml"
-    },
-    {
         "merged": "/Users/sukesh/AndroidStudioProjects/IET-Events/app/build/intermediates/res/merged/debug/layout_activity_profile.xml.flat",
         "source": "/Users/sukesh/AndroidStudioProjects/IET-Events/app/src/main/res/layout/activity_profile.xml"
     },
     {
-        "merged": "/Users/sukesh/AndroidStudioProjects/IET-Events/app/build/intermediates/res/merged/debug/drawable-anydpi-v24_google_logo.xml.flat",
-        "source": "/Users/sukesh/AndroidStudioProjects/IET-Events/app/build/generated/res/pngs/debug/drawable-anydpi-v24/google_logo.xml"
+        "merged": "/Users/sukesh/AndroidStudioProjects/IET-Events/app/build/intermediates/res/merged/debug/drawable_text_background.xml.flat",
+        "source": "/Users/sukesh/AndroidStudioProjects/IET-Events/app/src/main/res/drawable/text_background.xml"
     },
     {
         "merged": "/Users/sukesh/AndroidStudioProjects/IET-Events/app/build/intermediates/res/merged/debug/mipmap-xhdpi_ic_launcher.png.flat",
         "source": "/Users/sukesh/AndroidStudioProjects/IET-Events/app/src/main/res/mipmap-xhdpi/ic_launcher.png"
     },
     {
+        "merged": "/Users/sukesh/AndroidStudioProjects/IET-Events/app/build/intermediates/res/merged/debug/drawable-anydpi-v24_google_logo.xml.flat",
+        "source": "/Users/sukesh/AndroidStudioProjects/IET-Events/app/build/generated/res/pngs/debug/drawable-anydpi-v24/google_logo.xml"
+    },
+    {
         "merged": "/Users/sukesh/AndroidStudioProjects/IET-Events/app/build/intermediates/res/merged/debug/font_berkshire_swash.ttf.flat",
         "source": "/Users/sukesh/AndroidStudioProjects/IET-Events/app/src/main/res/font/berkshire_swash.ttf"
     },
     {
-        "merged": "/Users/sukesh/AndroidStudioProjects/IET-Events/app/build/intermediates/res/merged/debug/drawable-mdpi_google_logo.png.flat",
-        "source": "/Users/sukesh/AndroidStudioProjects/IET-Events/app/build/generated/res/pngs/debug/drawable-mdpi/google_logo.png"
-    },
-    {
         "merged": "/Users/sukesh/AndroidStudioProjects/IET-Events/app/build/intermediates/res/merged/debug/drawable_ic_admin_nav.xml.flat",
         "source": "/Users/sukesh/AndroidStudioProjects/IET-Events/app/src/main/res/drawable/ic_admin_nav.xml"
+    },
+    {
+        "merged": "/Users/sukesh/AndroidStudioProjects/IET-Events/app/build/intermediates/res/merged/debug/drawable-mdpi_google_logo.png.flat",
+        "source": "/Users/sukesh/AndroidStudioProjects/IET-Events/app/build/generated/res/pngs/debug/drawable-mdpi/google_logo.png"
     },
     {
         "merged": "/Users/sukesh/AndroidStudioProjects/IET-Events/app/build/intermediates/res/merged/debug/drawable_ic_chats_nav.xml.flat",
@@ -238,6 +238,10 @@
     {
         "merged": "/Users/sukesh/AndroidStudioProjects/IET-Events/app/build/intermediates/res/merged/debug/mipmap-xxxhdpi_ic_launcher.png.flat",
         "source": "/Users/sukesh/AndroidStudioProjects/IET-Events/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/Users/sukesh/AndroidStudioProjects/IET-Events/app/build/intermediates/res/merged/debug/layout_fragment_add_meeting.xml.flat",
+        "source": "/Users/sukesh/AndroidStudioProjects/IET-Events/app/src/main/res/layout/fragment_add_meeting.xml"
     },
     {
         "merged": "/Users/sukesh/AndroidStudioProjects/IET-Events/app/build/intermediates/res/merged/debug/layout_activity_login.xml.flat",

@@ -4,40 +4,6 @@
             "outputFile": "/Users/sukesh/AndroidStudioProjects/IET-Events/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-km/values-km.xml",
             "map": [
                 {
-                    "source": "/Users/sukesh/.gradle/caches/transforms-2/files-2.1/9d75dcaa415e282a3c0593e39827c28a/wear-1.0.0/res/values-km/values-km.xml",
-                    "from": {
-                        "startLines": "2,3",
-                        "startColumns": "4,4",
-                        "startOffsets": "55,162",
-                        "endColumns": "106,107",
-                        "endOffsets": "157,265"
-                    },
-                    "to": {
-                        "startLines": "88,89",
-                        "startColumns": "4,4",
-                        "startOffsets": "8372,8479",
-                        "endColumns": "106,107",
-                        "endOffsets": "8474,8582"
-                    }
-                },
-                {
-                    "source": "/Users/sukesh/.gradle/caches/transforms-2/files-2.1/61dcda5bcb7f05610fe3a664d02c4853/navigation-ui-2.3.0/res/values-km/values-km.xml",
-                    "from": {
-                        "startLines": "2,3",
-                        "startColumns": "4,4",
-                        "startOffsets": "55,160",
-                        "endColumns": "104,104",
-                        "endOffsets": "155,260"
-                    },
-                    "to": {
-                        "startLines": "84,85",
-                        "startColumns": "4,4",
-                        "startOffsets": "7977,8082",
-                        "endColumns": "104,104",
-                        "endOffsets": "8077,8182"
-                    }
-                },
-                {
                     "source": "/Users/sukesh/.gradle/caches/transforms-2/files-2.1/050caa3f0d7bdb092be2c6731bb1be21/jetified-play-services-base-17.1.0/res/values-km/values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
@@ -89,7 +55,7 @@
                     }
                 },
                 {
-                    "source": "/Users/sukesh/.gradle/caches/transforms-2/files-2.1/3dd31304fa3897abec167b59287e7e00/jetified-play-services-basement-17.0.0/res/values-km/values.xml",
+                    "source": "/Users/sukesh/.gradle/caches/transforms-2/files-2.1/bfcaca6586d156e0f4de8feba22a36f8/jetified-play-services-basement-17.1.0/res/values-km/values.xml",
                     "from": {
                         "startLines": "4",
                         "startColumns": "0",
@@ -120,6 +86,23 @@
                         "startOffsets": "5492,5571,5653,5725,5790,5852,5925,6008,6087,6168,6240,6308,6370,6436,6507,6566,6632,6701,6774,6843,6896,6954,7004,7065,7124,7192,7262,7331,7398,7457,7523,7588,7655,7710,7767,7844,7921",
                         "endColumns": "78,81,71,64,61,72,82,78,80,71,67,61,65,70,58,65,68,72,68,52,57,49,60,58,67,69,68,66,58,65,64,66,54,56,76,76,55",
                         "endOffsets": "5566,5648,5720,5785,5847,5920,6003,6082,6163,6235,6303,6365,6431,6502,6561,6627,6696,6769,6838,6891,6949,6999,7060,7119,7187,7257,7326,7393,7452,7518,7583,7650,7705,7762,7839,7916,7972"
+                    }
+                },
+                {
+                    "source": "/Users/sukesh/.gradle/caches/transforms-2/files-2.1/0066bb62865a869391213c4a0730c87c/navigation-ui-2.3.2/res/values-km/values-km.xml",
+                    "from": {
+                        "startLines": "2,3",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,160",
+                        "endColumns": "104,104",
+                        "endOffsets": "155,260"
+                    },
+                    "to": {
+                        "startLines": "84,85",
+                        "startColumns": "4,4",
+                        "startOffsets": "7977,8082",
+                        "endColumns": "104,104",
+                        "endOffsets": "8077,8182"
                     }
                 }
             ]

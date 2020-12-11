@@ -21,40 +21,6 @@
                     }
                 },
                 {
-                    "source": "/Users/sukesh/.gradle/caches/transforms-2/files-2.1/61dcda5bcb7f05610fe3a664d02c4853/navigation-ui-2.3.0/res/values-ko/values-ko.xml",
-                    "from": {
-                        "startLines": "2,3",
-                        "startColumns": "4,4",
-                        "startOffsets": "55,155",
-                        "endColumns": "99,101",
-                        "endOffsets": "150,252"
-                    },
-                    "to": {
-                        "startLines": "92,93",
-                        "startColumns": "4,4",
-                        "startOffsets": "7900,8000",
-                        "endColumns": "99,101",
-                        "endOffsets": "7995,8097"
-                    }
-                },
-                {
-                    "source": "/Users/sukesh/.gradle/caches/transforms-2/files-2.1/9d75dcaa415e282a3c0593e39827c28a/wear-1.0.0/res/values-ko/values-ko.xml",
-                    "from": {
-                        "startLines": "2,3",
-                        "startColumns": "4,4",
-                        "startOffsets": "55,155",
-                        "endColumns": "99,103",
-                        "endOffsets": "150,254"
-                    },
-                    "to": {
-                        "startLines": "97,98",
-                        "startColumns": "4,4",
-                        "startOffsets": "8349,8449",
-                        "endColumns": "99,103",
-                        "endOffsets": "8444,8548"
-                    }
-                },
-                {
                     "source": "/Users/sukesh/.gradle/caches/transforms-2/files-2.1/fe1277922d4be2c2330edfb6ccbb6a02/jetified-zxing-android-embedded-3.2.0/res/values-ko/values-ko.xml",
                     "from": {
                         "startLines": "2,3,4,5",
@@ -64,28 +30,11 @@
                         "endOffsets": "101,148,255,327"
                     },
                     "to": {
-                        "startLines": "99,100,101,102",
+                        "startLines": "97,98,99,100",
                         "startColumns": "4,4,4,4",
-                        "startOffsets": "8553,8604,8651,8758",
+                        "startOffsets": "8349,8400,8447,8554",
                         "endColumns": "50,46,106,71",
-                        "endOffsets": "8599,8646,8753,8825"
-                    }
-                },
-                {
-                    "source": "/Users/sukesh/.gradle/caches/transforms-2/files-2.1/3dd31304fa3897abec167b59287e7e00/jetified-play-services-basement-17.0.0/res/values-ko/values.xml",
-                    "from": {
-                        "startLines": "4",
-                        "startColumns": "0",
-                        "startOffsets": "247",
-                        "endColumns": "179",
-                        "endOffsets": "426"
-                    },
-                    "to": {
-                        "startLines": "37",
-                        "startColumns": "4",
-                        "startOffsets": "3738",
-                        "endColumns": "179",
-                        "endOffsets": "3913"
+                        "endOffsets": "8395,8442,8549,8621"
                     }
                 },
                 {
@@ -103,6 +52,40 @@
                         "startOffsets": "5121,5202,5249,5302,5354,5421,5486,5549,8102",
                         "endColumns": "80,46,52,51,66,64,62,59,66",
                         "endOffsets": "5197,5244,5297,5349,5416,5481,5544,5604,8164"
+                    }
+                },
+                {
+                    "source": "/Users/sukesh/.gradle/caches/transforms-2/files-2.1/0066bb62865a869391213c4a0730c87c/navigation-ui-2.3.2/res/values-ko/values-ko.xml",
+                    "from": {
+                        "startLines": "2,3",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,155",
+                        "endColumns": "99,101",
+                        "endOffsets": "150,252"
+                    },
+                    "to": {
+                        "startLines": "92,93",
+                        "startColumns": "4,4",
+                        "startOffsets": "7900,8000",
+                        "endColumns": "99,101",
+                        "endOffsets": "7995,8097"
+                    }
+                },
+                {
+                    "source": "/Users/sukesh/.gradle/caches/transforms-2/files-2.1/bfcaca6586d156e0f4de8feba22a36f8/jetified-play-services-basement-17.1.0/res/values-ko/values.xml",
+                    "from": {
+                        "startLines": "4",
+                        "startColumns": "0",
+                        "startOffsets": "247",
+                        "endColumns": "179",
+                        "endOffsets": "426"
+                    },
+                    "to": {
+                        "startLines": "37",
+                        "startColumns": "4",
+                        "startOffsets": "3738",
+                        "endColumns": "179",
+                        "endOffsets": "3913"
                     }
                 },
                 {
