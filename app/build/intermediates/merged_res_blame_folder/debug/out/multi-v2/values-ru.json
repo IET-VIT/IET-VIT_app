@@ -4,7 +4,7 @@
             "outputFile": "/Users/sukesh/AndroidStudioProjects/IET-Events/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-ru/values-ru.xml",
             "map": [
                 {
-                    "source": "/Users/sukesh/.gradle/caches/transforms-2/files-2.1/3dd31304fa3897abec167b59287e7e00/jetified-play-services-basement-17.0.0/res/values-ru/values.xml",
+                    "source": "/Users/sukesh/.gradle/caches/transforms-2/files-2.1/bfcaca6586d156e0f4de8feba22a36f8/jetified-play-services-basement-17.1.0/res/values-ru/values.xml",
                     "from": {
                         "startLines": "4",
                         "startColumns": "0",
@@ -38,7 +38,24 @@
                     }
                 },
                 {
-                    "source": "/Users/sukesh/.gradle/caches/transforms-2/files-2.1/61dcda5bcb7f05610fe3a664d02c4853/navigation-ui-2.3.0/res/values-ru/values-ru.xml",
+                    "source": "/Users/sukesh/.gradle/caches/transforms-2/files-2.1/fe1277922d4be2c2330edfb6ccbb6a02/jetified-zxing-android-embedded-3.2.0/res/values-ru/values-ru.xml",
+                    "from": {
+                        "startLines": "2,3,4,5",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,117,164,306",
+                        "endColumns": "61,46,141,125",
+                        "endOffsets": "112,159,301,427"
+                    },
+                    "to": {
+                        "startLines": "88,89,90,91",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "8558,8620,8667,8809",
+                        "endColumns": "61,46,141,125",
+                        "endOffsets": "8615,8662,8804,8930"
+                    }
+                },
+                {
+                    "source": "/Users/sukesh/.gradle/caches/transforms-2/files-2.1/0066bb62865a869391213c4a0730c87c/navigation-ui-2.3.2/res/values-ru/values-ru.xml",
                     "from": {
                         "startLines": "2,3",
                         "startColumns": "4,4",
@@ -52,23 +69,6 @@
                         "startOffsets": "8148,8256",
                         "endColumns": "107,118",
                         "endOffsets": "8251,8370"
-                    }
-                },
-                {
-                    "source": "/Users/sukesh/.gradle/caches/transforms-2/files-2.1/fe1277922d4be2c2330edfb6ccbb6a02/jetified-zxing-android-embedded-3.2.0/res/values-ru/values-ru.xml",
-                    "from": {
-                        "startLines": "2,3,4,5",
-                        "startColumns": "4,4,4,4",
-                        "startOffsets": "55,117,164,306",
-                        "endColumns": "61,46,141,125",
-                        "endOffsets": "112,159,301,427"
-                    },
-                    "to": {
-                        "startLines": "90,91,92,93",
-                        "startColumns": "4,4,4,4",
-                        "startOffsets": "8785,8847,8894,9036",
-                        "endColumns": "61,46,141,125",
-                        "endOffsets": "8842,8889,9031,9157"
                     }
                 },
                 {
@@ -120,23 +120,6 @@
                         "startOffsets": "8457",
                         "endColumns": "100",
                         "endOffsets": "8553"
-                    }
-                },
-                {
-                    "source": "/Users/sukesh/.gradle/caches/transforms-2/files-2.1/9d75dcaa415e282a3c0593e39827c28a/wear-1.0.0/res/values-ru/values-ru.xml",
-                    "from": {
-                        "startLines": "2,3",
-                        "startColumns": "4,4",
-                        "startOffsets": "55,166",
-                        "endColumns": "110,115",
-                        "endOffsets": "161,277"
-                    },
-                    "to": {
-                        "startLines": "88,89",
-                        "startColumns": "4,4",
-                        "startOffsets": "8558,8669",
-                        "endColumns": "110,115",
-                        "endOffsets": "8664,8780"
                     }
                 }
             ]

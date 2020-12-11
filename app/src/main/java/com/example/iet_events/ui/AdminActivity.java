@@ -13,9 +13,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.view.GravityCompat;
 
 import com.example.iet_events.R;
 import com.example.iet_events.database.UserDatabase;
+import com.example.iet_events.fragments.AddMeetingFragment;
 import com.example.iet_events.fragments.AdminTaskFragment;
 import com.example.iet_events.models.Users;
 import com.google.firebase.database.DataSnapshot;
@@ -30,11 +32,14 @@ import butterknife.ButterKnife;
 public class AdminActivity extends AppCompatActivity {
 
     @BindView(R.id.add_tasks_card) CardView add_tasks_card;
+    @BindView(R.id.check_tasks_card) CardView check_tasks_card;
+    @BindView(R.id.meeting_card) CardView meeting_card;
     @BindView(R.id.admin_frame) FrameLayout admin_frame;
     @BindView(R.id.admin_main_layout) ConstraintLayout admin_main_layout;
     @BindView(R.id.admin_toolbar) Toolbar admin_toolbar;
 
     private ProgressDialog progressDialog;
+    private boolean isFrameOpen;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +50,7 @@ public class AdminActivity extends AppCompatActivity {
 
         admin_toolbar.setTitle("Admin Page");
         setSupportActionBar(admin_toolbar);
+        isFrameOpen = false;
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Loading");
@@ -60,7 +66,22 @@ public class AdminActivity extends AppCompatActivity {
         add_tasks_card.setOnClickListener(v -> {
             admin_frame.setVisibility(View.VISIBLE);
             admin_main_layout.setVisibility(View.GONE);
+            isFrameOpen = true;
             getSupportFragmentManager().beginTransaction().replace(R.id.admin_frame, new AdminTaskFragment()).commit();
+        });
+
+        check_tasks_card.setOnClickListener(v -> {
+            admin_frame.setVisibility(View.VISIBLE);
+            admin_main_layout.setVisibility(View.GONE);
+            isFrameOpen = true;
+//            getSupportFragmentManager().beginTransaction().replace(R.id.admin_frame, new CheckTaskFragment()).commit();
+        });
+
+        meeting_card.setOnClickListener(v -> {
+            admin_frame.setVisibility(View.VISIBLE);
+            admin_main_layout.setVisibility(View.GONE);
+            isFrameOpen = true;
+            getSupportFragmentManager().beginTransaction().replace(R.id.admin_frame, new AddMeetingFragment()).commit();
         });
     }
 
@@ -94,5 +115,16 @@ public class AdminActivity extends AppCompatActivity {
             finish();
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(isFrameOpen) {
+            isFrameOpen = false;
+            admin_frame.setVisibility(View.GONE);
+            admin_main_layout.setVisibility(View.VISIBLE);
+        }
+        else
+            super.onBackPressed();
     }
 }

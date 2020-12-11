@@ -55,23 +55,6 @@
                     }
                 },
                 {
-                    "source": "/Users/sukesh/.gradle/caches/transforms-2/files-2.1/9d75dcaa415e282a3c0593e39827c28a/wear-1.0.0/res/values-ur/values-ur.xml",
-                    "from": {
-                        "startLines": "2,3",
-                        "startColumns": "4,4",
-                        "startOffsets": "55,164",
-                        "endColumns": "108,112",
-                        "endOffsets": "159,272"
-                    },
-                    "to": {
-                        "startLines": "96,97",
-                        "startColumns": "4,4",
-                        "startOffsets": "9053,9162",
-                        "endColumns": "108,112",
-                        "endOffsets": "9157,9270"
-                    }
-                },
-                {
                     "source": "/Users/sukesh/.gradle/caches/transforms-2/files-2.1/d33c79c0b0da4e756d82892a98b4571b/jetified-android-image-cropper-2.8.0/res/values-ur/values-ur.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9",
@@ -86,23 +69,6 @@
                         "startOffsets": "5560,5664,5717,5774,5849,5930,6007,8789",
                         "endColumns": "103,52,56,74,80,76,64,76",
                         "endOffsets": "5659,5712,5769,5844,5925,6002,6067,8861"
-                    }
-                },
-                {
-                    "source": "/Users/sukesh/.gradle/caches/transforms-2/files-2.1/61dcda5bcb7f05610fe3a664d02c4853/navigation-ui-2.3.0/res/values-ur/values-ur.xml",
-                    "from": {
-                        "startLines": "2,3",
-                        "startColumns": "4,4",
-                        "startOffsets": "55,167",
-                        "endColumns": "111,114",
-                        "endOffsets": "162,277"
-                    },
-                    "to": {
-                        "startLines": "91,92",
-                        "startColumns": "4,4",
-                        "startOffsets": "8562,8674",
-                        "endColumns": "111,114",
-                        "endOffsets": "8669,8784"
                     }
                 },
                 {
@@ -123,7 +89,24 @@
                     }
                 },
                 {
-                    "source": "/Users/sukesh/.gradle/caches/transforms-2/files-2.1/3dd31304fa3897abec167b59287e7e00/jetified-play-services-basement-17.0.0/res/values-ur/values.xml",
+                    "source": "/Users/sukesh/.gradle/caches/transforms-2/files-2.1/0066bb62865a869391213c4a0730c87c/navigation-ui-2.3.2/res/values-ur/values-ur.xml",
+                    "from": {
+                        "startLines": "2,3",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,167",
+                        "endColumns": "111,114",
+                        "endOffsets": "162,277"
+                    },
+                    "to": {
+                        "startLines": "91,92",
+                        "startColumns": "4,4",
+                        "startOffsets": "8562,8674",
+                        "endColumns": "111,114",
+                        "endOffsets": "8669,8784"
+                    }
+                },
+                {
+                    "source": "/Users/sukesh/.gradle/caches/transforms-2/files-2.1/bfcaca6586d156e0f4de8feba22a36f8/jetified-play-services-basement-17.1.0/res/values-ur/values.xml",
                     "from": {
                         "startLines": "4",
                         "startColumns": "0",

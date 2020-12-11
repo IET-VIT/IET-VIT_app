@@ -27,6 +27,8 @@ public class AdminActivity_ViewBinding implements Unbinder {
     this.target = target;
 
     target.add_tasks_card = Utils.findRequiredViewAsType(source, R.id.add_tasks_card, "field 'add_tasks_card'", CardView.class);
+    target.check_tasks_card = Utils.findRequiredViewAsType(source, R.id.check_tasks_card, "field 'check_tasks_card'", CardView.class);
+    target.meeting_card = Utils.findRequiredViewAsType(source, R.id.meeting_card, "field 'meeting_card'", CardView.class);
     target.admin_frame = Utils.findRequiredViewAsType(source, R.id.admin_frame, "field 'admin_frame'", FrameLayout.class);
     target.admin_main_layout = Utils.findRequiredViewAsType(source, R.id.admin_main_layout, "field 'admin_main_layout'", ConstraintLayout.class);
     target.admin_toolbar = Utils.findRequiredViewAsType(source, R.id.admin_toolbar, "field 'admin_toolbar'", Toolbar.class);
@@ -40,6 +42,8 @@ public class AdminActivity_ViewBinding implements Unbinder {
     this.target = null;
 
     target.add_tasks_card = null;
+    target.check_tasks_card = null;
+    target.meeting_card = null;
     target.admin_frame = null;
     target.admin_main_layout = null;
     target.admin_toolbar = null;
