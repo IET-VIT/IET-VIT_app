@@ -8,18 +8,18 @@ _To be extended_
 
 - [x] Login page
 - [ ] Registration through Github and Google
-- [ ] Tasks (Separate for Admins and others)
-- [ ] Meetings
+- [x] Tasks (Separate for Admins and others)
+- [x] Meetings
 - [ ] Messaging (Room SQL)
 - [ ] Media & Live Streaming
 - [ ] Event timeline
 - [x] QR code generator
 - [ ] Quizzes
 - [ ] Landing page/Loading page
-- [ ] About IET-VIT and the Event
+- [ ] About IET-VIT and the Events
 - [ ] Profile Page
 - [ ] FAQ’s
-- [ ] Notifications
+- [x] Notifications
 
 ## 🎯 App Progress and Timeline:
 - 3rd September, 2020.
@@ -46,7 +46,12 @@ _To be extended_
    - [x] Major Bug fixes and UI improvement and Logo addition
    - [x] Added QR code 
    - [x] Change in the structure of data in firebase
-
+- 13th, 16th December 2020
+   - [x] Added new meeting fragment 
+   - [x] Added FCM to the application
+   - [x] Token generation/updation and database saving 
+   - [x] Alarm creation for meeting when notification arrives
+   
 ## 📚 Tech Stack:
 - <code><img height="38" src="https://i1.pngguru.com/preview/736/783/702/macos-app-icons-android-studio-png-icon.jpg"></code> Android Studio
 - <code><img height="38" src="https://github.com/edent/SuperTinyIcons/blob/master/images/svg/github.svg"></code> Github
