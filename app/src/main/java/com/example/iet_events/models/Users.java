@@ -9,6 +9,7 @@ public class Users extends UserID{
     @PrimaryKey(autoGenerate = true)
     private int primary_key;
     private String Name, Role;
+    private String FCM_Token;
 
     public Users() {
     }
@@ -27,6 +28,14 @@ public class Users extends UserID{
 
     public void setRole(String role) {
         Role = role;
+    }
+
+    public String getFCM_Token() {
+        return FCM_Token;
+    }
+
+    public void setFCM_Token(String FCM_Token) {
+        this.FCM_Token = FCM_Token;
     }
 
     public int getPrimary_key() {

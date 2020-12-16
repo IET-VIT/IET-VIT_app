@@ -27,4 +27,6 @@ public interface UserDao {
     @Query("SELECT * FROM userDb WHERE Role = :role")
     List<Users> loadAllUsersByRole(String role);
 
+    @Query("SELECT FCM_Token FROM userDb WHERE FCM_Token IS NOT null")
+    List<String> loadFCMTokens();
 }
