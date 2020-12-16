@@ -36,6 +36,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
@@ -117,6 +118,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                             Ed.putString("Name", NAME);
                             ROLE = String.valueOf(snapshot.child("Role").getValue());
                             Ed.putString("Role", ROLE);
+                            Ed.putString("FCM_Token", String.valueOf(snapshot.child("FCM_Token").getValue()));
                             Ed.commit();
                             nav_name_text.setText(NAME);
                             nav_mail_text.setText(currentUser.getEmail());
@@ -160,6 +162,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Toast.makeText(MainActivity.this, "Database Error : " + error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+
+        String token = FirebaseInstanceId.getInstance().getToken();
+        SharedPreferences.Editor Ed = loginPrefs.edit();
+        if(!token.equals(loginPrefs.getString("FCM_Token", null))){
+            FirebaseDatabase.getInstance().getReference("Users").child(userId).child("FCM_Token").setValue(token)
+                    .addOnCompleteListener(task -> {
+                        Ed.putString("FCM_Token", token);
+                        Ed.commit();
+                    });
+        }
     }
 
     @Override

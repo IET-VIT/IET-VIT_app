@@ -29,7 +29,7 @@ public final class UserDao_Impl implements UserDao {
     this.__insertionAdapterOfUsers = new EntityInsertionAdapter<Users>(__db) {
       @Override
       public String createQuery() {
-        return "INSERT OR ABORT INTO `userDb`(`UserID`,`primary_key`,`Name`,`Role`) VALUES (?,nullif(?, 0),?,?)";
+        return "INSERT OR ABORT INTO `userDb`(`UserID`,`primary_key`,`Name`,`Role`,`FCM_Token`) VALUES (?,nullif(?, 0),?,?,?)";
       }
 
       @Override
@@ -49,6 +49,11 @@ public final class UserDao_Impl implements UserDao {
           stmt.bindNull(4);
         } else {
           stmt.bindString(4, value.getRole());
+        }
+        if (value.getFCM_Token() == null) {
+          stmt.bindNull(5);
+        } else {
+          stmt.bindString(5, value.getFCM_Token());
         }
       }
     };
@@ -117,6 +122,7 @@ public final class UserDao_Impl implements UserDao {
       final int _cursorIndexOfPrimaryKey = _cursor.getColumnIndexOrThrow("primary_key");
       final int _cursorIndexOfName = _cursor.getColumnIndexOrThrow("Name");
       final int _cursorIndexOfRole = _cursor.getColumnIndexOrThrow("Role");
+      final int _cursorIndexOfFCMToken = _cursor.getColumnIndexOrThrow("FCM_Token");
       final List<Users> _result = new ArrayList<Users>(_cursor.getCount());
       while(_cursor.moveToNext()) {
         final Users _item;
@@ -131,6 +137,9 @@ public final class UserDao_Impl implements UserDao {
         final String _tmpRole;
         _tmpRole = _cursor.getString(_cursorIndexOfRole);
         _item.setRole(_tmpRole);
+        final String _tmpFCM_Token;
+        _tmpFCM_Token = _cursor.getString(_cursorIndexOfFCMToken);
+        _item.setFCM_Token(_tmpFCM_Token);
         _result.add(_item);
       }
       return _result;
@@ -156,6 +165,7 @@ public final class UserDao_Impl implements UserDao {
       final int _cursorIndexOfPrimaryKey = _cursor.getColumnIndexOrThrow("primary_key");
       final int _cursorIndexOfName = _cursor.getColumnIndexOrThrow("Name");
       final int _cursorIndexOfRole = _cursor.getColumnIndexOrThrow("Role");
+      final int _cursorIndexOfFCMToken = _cursor.getColumnIndexOrThrow("FCM_Token");
       final List<Users> _result = new ArrayList<Users>(_cursor.getCount());
       while(_cursor.moveToNext()) {
         final Users _item;
@@ -170,6 +180,28 @@ public final class UserDao_Impl implements UserDao {
         final String _tmpRole;
         _tmpRole = _cursor.getString(_cursorIndexOfRole);
         _item.setRole(_tmpRole);
+        final String _tmpFCM_Token;
+        _tmpFCM_Token = _cursor.getString(_cursorIndexOfFCMToken);
+        _item.setFCM_Token(_tmpFCM_Token);
+        _result.add(_item);
+      }
+      return _result;
+    } finally {
+      _cursor.close();
+      _statement.release();
+    }
+  }
+
+  @Override
+  public List<String> loadFCMTokens() {
+    final String _sql = "SELECT FCM_Token FROM userDb WHERE FCM_Token IS NOT null";
+    final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 0);
+    final Cursor _cursor = __db.query(_statement);
+    try {
+      final List<String> _result = new ArrayList<String>(_cursor.getCount());
+      while(_cursor.moveToNext()) {
+        final String _item;
+        _item = _cursor.getString(0);
         _result.add(_item);
       }
       return _result;

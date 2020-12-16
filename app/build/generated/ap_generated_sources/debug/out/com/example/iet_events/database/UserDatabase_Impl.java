@@ -25,12 +25,12 @@ public final class UserDatabase_Impl extends UserDatabase {
 
   @Override
   protected SupportSQLiteOpenHelper createOpenHelper(DatabaseConfiguration configuration) {
-    final SupportSQLiteOpenHelper.Callback _openCallback = new RoomOpenHelper(configuration, new RoomOpenHelper.Delegate(1) {
+    final SupportSQLiteOpenHelper.Callback _openCallback = new RoomOpenHelper(configuration, new RoomOpenHelper.Delegate(3) {
       @Override
       public void createAllTables(SupportSQLiteDatabase _db) {
-        _db.execSQL("CREATE TABLE IF NOT EXISTS `userDb` (`UserID` TEXT, `primary_key` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `Name` TEXT, `Role` TEXT)");
+        _db.execSQL("CREATE TABLE IF NOT EXISTS `userDb` (`UserID` TEXT, `primary_key` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `Name` TEXT, `Role` TEXT, `FCM_Token` TEXT)");
         _db.execSQL("CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)");
-        _db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"5cdf534f22c3b175e2bf8576afd75890\")");
+        _db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"8cd8f7e28a964c421d039fb1ea3bbd76\")");
       }
 
       @Override
@@ -60,11 +60,12 @@ public final class UserDatabase_Impl extends UserDatabase {
 
       @Override
       protected void validateMigration(SupportSQLiteDatabase _db) {
-        final HashMap<String, TableInfo.Column> _columnsUserDb = new HashMap<String, TableInfo.Column>(4);
+        final HashMap<String, TableInfo.Column> _columnsUserDb = new HashMap<String, TableInfo.Column>(5);
         _columnsUserDb.put("UserID", new TableInfo.Column("UserID", "TEXT", false, 0));
         _columnsUserDb.put("primary_key", new TableInfo.Column("primary_key", "INTEGER", true, 1));
         _columnsUserDb.put("Name", new TableInfo.Column("Name", "TEXT", false, 0));
         _columnsUserDb.put("Role", new TableInfo.Column("Role", "TEXT", false, 0));
+        _columnsUserDb.put("FCM_Token", new TableInfo.Column("FCM_Token", "TEXT", false, 0));
         final HashSet<TableInfo.ForeignKey> _foreignKeysUserDb = new HashSet<TableInfo.ForeignKey>(0);
         final HashSet<TableInfo.Index> _indicesUserDb = new HashSet<TableInfo.Index>(0);
         final TableInfo _infoUserDb = new TableInfo("userDb", _columnsUserDb, _foreignKeysUserDb, _indicesUserDb);
@@ -75,7 +76,7 @@ public final class UserDatabase_Impl extends UserDatabase {
                   + " Found:\n" + _existingUserDb);
         }
       }
-    }, "5cdf534f22c3b175e2bf8576afd75890", "79ff576f80ae84bec2aa1be2b4a8dd84");
+    }, "8cd8f7e28a964c421d039fb1ea3bbd76", "6375e646590add84aa63680e078ef634");
     final SupportSQLiteOpenHelper.Configuration _sqliteConfig = SupportSQLiteOpenHelper.Configuration.builder(configuration.context)
         .name(configuration.name)
         .callback(_openCallback)

@@ -2,6 +2,7 @@ package com.example.iet_events.fragments;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -20,11 +21,19 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.example.iet_events.R;
+import com.example.iet_events.database.UserDatabase;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.FirebaseDatabase;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
@@ -40,6 +49,7 @@ public class AddMeetingFragment extends Fragment{
     @BindView(R.id.add_meeting_btn) Button add_meeting_btn;
 
     int hourUpdate, minuteUpdate;
+    String hourMeeting, minuteMeeting, dateMeeting;
 
     public AddMeetingFragment() {
     }
@@ -69,6 +79,7 @@ public class AddMeetingFragment extends Fragment{
                     dateCalendar.set(Calendar.MONTH, month);
                     dateCalendar.set(Calendar.DATE, date);
                     date_select_btn.setText(DateFormat.format("EEEE, MMM d yyyy", dateCalendar).toString());
+                    dateMeeting = String.valueOf(DateFormat.format("d MMM", dateCalendar));
                     isDateTimeSet[0] = true;
                 }
             }, YEAR, MONTH, DATE);
@@ -86,6 +97,8 @@ public class AddMeetingFragment extends Fragment{
                     timeCalendar.set(Calendar.HOUR_OF_DAY, hour);
                     timeCalendar.set(Calendar.MINUTE, minute);
                     time_select_btn.setText(DateFormat.format("h:mm aa", timeCalendar).toString());
+                    hourMeeting = String.valueOf(timeCalendar.getTime().getHours());
+                    minuteMeeting = String.valueOf(timeCalendar.getTime().getMinutes());
                     isDateTimeSet[1] = true;
                 }
             }, HOUR, MINUTE, false);
@@ -98,13 +111,14 @@ public class AddMeetingFragment extends Fragment{
             if(meeting_desc.length() != 0 && isDateTimeSet[0] && isDateTimeSet[1]){
                 Map<String, String> meetingMap = new HashMap<>();
                 meetingMap.put("Description",meeting_desc);
-                meetingMap.put("Date",date_select_btn.getText().toString());
-                meetingMap.put("Time",time_select_btn.getText().toString());
+                meetingMap.put("Date", date_select_btn.getText().toString());
+                meetingMap.put("Time", time_select_btn.getText().toString());
                 FirebaseDatabase.getInstance().getReference("Meetings").child(String.valueOf(System.currentTimeMillis()))
                         .setValue(meetingMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         Toast.makeText(getContext(),"Meeting added and Notified!",Toast.LENGTH_LONG).show();
+                        new sendMessage().execute(hourMeeting, minuteMeeting, dateMeeting);
                         getActivity().finish();
                     }
                 });
@@ -113,5 +127,56 @@ public class AddMeetingFragment extends Fragment{
         });
 
         return root;
+    }
+
+    private class sendMessage extends AsyncTask<String, Void, Void> {
+        @Override
+        protected Void doInBackground(String... voids) {
+            try {
+                final String apiKey = "FCM API_Key";
+                URL url = new URL("https://fcm.googleapis.com/fcm/send");
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setDoOutput(true);
+                conn.setRequestMethod("POST");
+                conn.setRequestProperty("Content-Type", "application/json");
+                conn.setRequestProperty("Authorization", "key=" + apiKey);
+                conn.setDoOutput(true);
+                JSONObject message = new JSONObject();
+                message.put("registration_ids", new JSONArray(UserDatabase.getInstance(getContext()).UserDao().loadFCMTokens()));
+                message.put("priority", "high");
+
+                JSONObject notification = new JSONObject();
+                notification.put("title", "Meeting Time!");
+                notification.put("body", "Meeting scheduled at " + voids[0] + ":" + voids[1] + " on " + voids[2]);
+                notification.put("hourMeeting", voids[0]);
+                notification.put("minuteMeeting", voids[1]);
+                message.put("data", notification);
+                OutputStream os = conn.getOutputStream();
+                os.write(message.toString().getBytes());
+                os.flush();
+                os.close();
+
+                int responseCode = conn.getResponseCode();
+                Log.e("Sending POST request to", String.valueOf(url));
+                Log.e("Post parameters", message.toString());
+                Log.e("Response Code : ", String.valueOf(responseCode));
+                Log.e("Response Code : ", conn.getResponseMessage());
+
+                BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                String inputLine;
+                StringBuffer response = new StringBuffer();
+
+                while ((inputLine = in.readLine()) != null) {
+                    response.append(inputLine);
+                }
+                in.close();
+                Log.e("Response",response.toString());
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                Log.e("error",e.getMessage());
+            }
+            return null;
+        }
     }
 }
