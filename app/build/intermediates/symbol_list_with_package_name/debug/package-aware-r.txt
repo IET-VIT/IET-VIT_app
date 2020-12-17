@@ -1833,9 +1833,11 @@ drawable test_custom_background
 drawable text_background
 drawable tooltip_frame_dark
 drawable tooltip_frame_light
+drawable vittuc
 font acme
 font berkshire_swash
 font pacifico
+font poppins_semibold
 id ALT
 id BOTTOM_END
 id BOTTOM_START
@@ -1928,6 +1930,7 @@ id all_main_login_layout
 id always
 id animateToEnd
 id animateToStart
+id animationView
 id asConfigured
 id async
 id auto
@@ -1946,6 +1949,8 @@ id buttonPanel
 id cache_measures
 id cancel_action
 id cancel_button
+id cardView
+id cardView2
 id center
 id centerCrop
 id centerInside
@@ -2110,13 +2115,20 @@ id linear
 id linearLayout
 id listMode
 id list_item
+id loadingAnimationMeeting
+id loadingAnimationTask
+id loc_link_text
 id lottie_layer_name
 id mail_login_button
 id main_toolbar
 id masked
 id media_actions
+id meet_desc_item
+id meet_link_item
+id meet_time_item
 id meeting_card
 id meeting_desc_text
+id meeting_recycler_view
 id message
 id middle
 id mini
@@ -2164,6 +2176,7 @@ id nav_view
 id navigation_header_container
 id never
 id noScroll
+id no_meeting_text
 id none
 id normal
 id notification_background
@@ -2278,8 +2291,10 @@ id tag_unhandled_key_event_manager
 id tag_unhandled_key_listeners
 id task_desc
 id task_item_layout
+id task_number_text
 id task_role
 id tasks_recycler_view
+id tasks_status_text
 id test_checkbox_android_button_tint
 id test_checkbox_app_button_tint
 id test_radiobutton_android_button_tint
@@ -2295,6 +2310,9 @@ id textSpacerNoTitle
 id textStart
 id textView
 id textView10
+id textView11
+id textView12
+id textView13
 id textView2
 id textView26
 id textView29
@@ -2303,6 +2321,8 @@ id textView4
 id textView5
 id textView6
 id textView7
+id textView8
+id textView9
 id text_input_end_icon
 id text_input_start_icon
 id textinput_counter
@@ -2340,6 +2360,7 @@ id view
 id view_offset_helper
 id visible
 id visible_removing_fragment_view_tag
+id watch_animation
 id when_playing
 id wide
 id withText
@@ -2457,6 +2478,8 @@ layout fragment_admin_task
 layout fragment_dashboard
 layout fragment_home
 layout fragment_profile
+layout loading_dialog
+layout meeting_card_item
 layout mtrl_alert_dialog
 layout mtrl_alert_dialog_actions
 layout mtrl_alert_dialog_title
@@ -2530,7 +2553,10 @@ menu main_menu
 mipmap ic_launcher
 mipmap ic_launcher_round
 plurals mtrl_badge_content_description
+raw loading_searching
+raw party_popper
 raw zxing_beep
+string FCM_API_KEY
 string abc_action_bar_home_description
 string abc_action_bar_up_description
 string abc_action_menu_overflow_description
@@ -2696,6 +2722,7 @@ string nav_drawer_open
 string nav_header_desc
 string nav_header_subtitle
 string nav_header_title
+string no_meetings_upcoming
 string password
 string password_toggle_content_description
 string path_password_eye
@@ -2706,6 +2733,7 @@ string pick_image_intent_chooser_title
 string project_id
 string search_menu_title
 string status_bar_notification_info_overflow
+string upcoming_events_text
 string zxing_app_name
 string zxing_button_ok
 string zxing_msg_camera_framework_bug

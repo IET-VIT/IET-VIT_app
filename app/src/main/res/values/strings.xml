@@ -17,4 +17,8 @@
     <string name="menu_dashboard">Dashboard</string>
     <string name="menu_profile">Profile</string>
 
+    <string name="upcoming_events_text"><![CDATA[Upcoming Events & Workshops]]></string>
+    <string name="no_meetings_upcoming">No meetings upcoming</string>
+    <string name="FCM_API_KEY">I won\'t tell</string>
+
 </resources>

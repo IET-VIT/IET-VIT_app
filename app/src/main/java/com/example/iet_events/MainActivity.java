@@ -11,6 +11,8 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
@@ -24,7 +26,6 @@ import android.widget.Toast;
 import com.example.iet_events.fragments.DashboardFragment;
 import com.example.iet_events.fragments.HomeFragment;
 import com.example.iet_events.fragments.ProfileFragment;
-import com.example.iet_events.models.Task;
 import com.example.iet_events.ui.AdminActivity;
 import com.example.iet_events.ui.LoginActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -36,15 +37,11 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -59,10 +56,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private TextView nav_name_text, nav_mail_text;
 
     private FirebaseAuth mAuth;
-    public static String NAME, ROLE, USER_ID;
-    public static List<Task> taskList;
     private SharedPreferences loginPrefs;
     private String name_check;
+
+    public static String NAME, ROLE, USER_ID;
+    public static Dialog loadingDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,6 +107,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             SharedPreferences.Editor Ed = loginPrefs.edit();
 
             if(name_check == null) {
+                showLoadingDialog();
                 DatabaseReference mRef = FirebaseDatabase.getInstance().getReference("Users");
                 mRef.child(USER_ID).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
@@ -122,13 +121,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                             Ed.commit();
                             nav_name_text.setText(NAME);
                             nav_mail_text.setText(currentUser.getEmail());
-                            fetchTasks(USER_ID);
+                            loadingDialog.dismiss();
                         }
                     }
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
                         Toast.makeText(MainActivity.this, "Database Error : " + error.getMessage(), Toast.LENGTH_SHORT).show();
+                        loadingDialog.dismiss();
                     }
                 });
             }else {
@@ -136,41 +136,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 ROLE = loginPrefs.getString("Role",null);
                 nav_name_text.setText(NAME);
                 nav_mail_text.setText(loginPrefs.getString("Email",null));
-                fetchTasks(USER_ID);
             }
         }else{
             sendToLogin();
-        }
-    }
-
-    public void fetchTasks(String userId){
-        taskList = new ArrayList<>();
-        DatabaseReference mRef = FirebaseDatabase.getInstance().getReference("Users");
-        mRef.child(userId).child("Tasks").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()) {
-                    for (DataSnapshot taskSnap : snapshot.getChildren()) {
-                        Task task = taskSnap.getValue(Task.class).withId(taskSnap.getKey());
-                        taskList.add(task);
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(MainActivity.this, "Database Error : " + error.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        String token = FirebaseInstanceId.getInstance().getToken();
-        SharedPreferences.Editor Ed = loginPrefs.edit();
-        if(!token.equals(loginPrefs.getString("FCM_Token", null))){
-            FirebaseDatabase.getInstance().getReference("Users").child(userId).child("FCM_Token").setValue(token)
-                    .addOnCompleteListener(task -> {
-                        Ed.putString("FCM_Token", token);
-                        Ed.commit();
-                    });
         }
     }
 
@@ -227,10 +195,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private void sendToLogin() {
         SharedPreferences.Editor Ed = loginPrefs.edit();
-        Ed.putString("Name", null);
-        Ed.putString("UserId", null);
-        Ed.putString("Email", null);
-        Ed.putString("Role", null);
+        Ed.putString("Name",null);
+        Ed.putString("UserId",null);
+        Ed.putString("Email",null);
+        Ed.putString("Role",null);
+        Ed.putString("FCM_Token",null);
         Ed.commit();
         Intent intent = new Intent(MainActivity.this, LoginActivity.class);
         startActivity(intent);
@@ -256,5 +225,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } catch (WriterException e) {
             e.printStackTrace();
         }
+    }
+
+    private void showLoadingDialog() {
+        loadingDialog = new Dialog(this);
+        loadingDialog.setContentView(R.layout.loading_dialog);
+        loadingDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        loadingDialog.setCancelable(false);
+        loadingDialog.show();
     }
 }

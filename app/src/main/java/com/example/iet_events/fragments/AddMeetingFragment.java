@@ -46,6 +46,7 @@ public class AddMeetingFragment extends Fragment{
     @BindView(R.id.date_select_btn) TextView date_select_btn;
     @BindView(R.id.time_select_btn) TextView time_select_btn;
     @BindView(R.id.meeting_desc_text) EditText meeting_desc_text;
+    @BindView(R.id.loc_link_text) EditText loc_link_text;
     @BindView(R.id.add_meeting_btn) Button add_meeting_btn;
 
     int hourUpdate, minuteUpdate;
@@ -108,11 +109,13 @@ public class AddMeetingFragment extends Fragment{
 
         add_meeting_btn.setOnClickListener(v -> {
             String meeting_desc = meeting_desc_text.getText().toString();
-            if(meeting_desc.length() != 0 && isDateTimeSet[0] && isDateTimeSet[1]){
+            String meeting_link_text = loc_link_text.getText().toString();
+            if(meeting_desc.length() != 0 && isDateTimeSet[0] && isDateTimeSet[1] && meeting_link_text.length() != 0){
                 Map<String, String> meetingMap = new HashMap<>();
                 meetingMap.put("Description",meeting_desc);
                 meetingMap.put("Date", date_select_btn.getText().toString());
                 meetingMap.put("Time", time_select_btn.getText().toString());
+                meetingMap.put("Location_Link", meeting_link_text);
                 FirebaseDatabase.getInstance().getReference("Meetings").child(String.valueOf(System.currentTimeMillis()))
                         .setValue(meetingMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
@@ -133,7 +136,7 @@ public class AddMeetingFragment extends Fragment{
         @Override
         protected Void doInBackground(String... voids) {
             try {
-                final String apiKey = "FCM API_Key";
+                final String apiKey = getString(R.string.FCM_API_KEY);
                 URL url = new URL("https://fcm.googleapis.com/fcm/send");
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setDoOutput(true);

@@ -1,7 +1,13 @@
 package com.example.iet_events.models;
 
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+@Entity(tableName = "taskDb")
 public class Task extends TaskId{
 
+    @PrimaryKey(autoGenerate = true)
+    private int primary_key;
     private String Description, Status;
 
     public Task() {
@@ -21,5 +27,13 @@ public class Task extends TaskId{
 
     public void setStatus(String status) {
         Status = status;
+    }
+
+    public int getPrimary_key() {
+        return primary_key;
+    }
+
+    public void setPrimary_key(int primary_key) {
+        this.primary_key = primary_key;
     }
 }

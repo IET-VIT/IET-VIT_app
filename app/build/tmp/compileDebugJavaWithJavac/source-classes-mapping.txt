@@ -2,15 +2,6 @@ com/example/iet_events/models/Task.java
  com.example.iet_events.models.Task
 com/example/iet_events/models/Users.java
  com.example.iet_events.models.Users
-com/example/iet_events/MainActivity.java
- com.example.iet_events.MainActivity
- com.example.iet_events.MainActivity$1
- com.example.iet_events.MainActivity$2
- com.example.iet_events.MainActivity$3
-com/example/iet_events/utils/AdminTaskAdapter.java
- com.example.iet_events.utils.AdminTaskAdapter
- com.example.iet_events.utils.AdminTaskAdapter$1
- com.example.iet_events.utils.AdminTaskAdapter$ViewHolder
 com/example/iet_events/ui/AdminActivity.java
  com.example.iet_events.ui.AdminActivity
  com.example.iet_events.ui.AdminActivity$1
@@ -18,8 +9,6 @@ com/example/iet_events/fragments/DashboardFragment.java
  com.example.iet_events.fragments.DashboardFragment
 com/example/iet_events/database/UserDao.java
  com.example.iet_events.database.UserDao
-com/example/iet_events/database/UserDatabase.java
- com.example.iet_events.database.UserDatabase
 com/example/iet_events/ui/LoginActivity.java
  com.example.iet_events.ui.LoginActivity
  com.example.iet_events.ui.LoginActivity$1
@@ -36,22 +25,44 @@ com/example/iet_events/fragments/AddMeetingFragment.java
  com.example.iet_events.fragments.AddMeetingFragment$sendMessage
 com/example/iet_events/fragments/HomeFragment.java
  com.example.iet_events.fragments.HomeFragment
+ com.example.iet_events.fragments.HomeFragment$1
+ com.example.iet_events.fragments.HomeFragment$2
+com/example/iet_events/models/Meeting.java
+ com.example.iet_events.models.Meeting
 com/example/iet_events/service/AlarmActivity.java
  com.example.iet_events.service.AlarmActivity
-com/example/iet_events/fragments/AdminTaskFragment.java
- com.example.iet_events.fragments.AdminTaskFragment
- com.example.iet_events.fragments.AdminTaskFragment$1
- com.example.iet_events.fragments.AdminTaskFragment$2
 com/example/iet_events/utils/TaskAdapter.java
  com.example.iet_events.utils.TaskAdapter
  com.example.iet_events.utils.TaskAdapter$1
  com.example.iet_events.utils.TaskAdapter$1$1
  com.example.iet_events.utils.TaskAdapter$1$2
+ com.example.iet_events.utils.TaskAdapter$1$2$1
  com.example.iet_events.utils.TaskAdapter$ViewHolder
+com/example/iet_events/database/TaskDao.java
+ com.example.iet_events.database.TaskDao
+com/example/iet_events/database/TaskDatabase.java
+ com.example.iet_events.database.TaskDatabase
+com/example/iet_events/MainActivity.java
+ com.example.iet_events.MainActivity
+ com.example.iet_events.MainActivity$1
+ com.example.iet_events.MainActivity$2
+com/example/iet_events/utils/AdminTaskAdapter.java
+ com.example.iet_events.utils.AdminTaskAdapter
+ com.example.iet_events.utils.AdminTaskAdapter$1
+ com.example.iet_events.utils.AdminTaskAdapter$ViewHolder
+com/example/iet_events/database/UserDatabase.java
+ com.example.iet_events.database.UserDatabase
+com/example/iet_events/fragments/AdminTaskFragment.java
+ com.example.iet_events.fragments.AdminTaskFragment
+ com.example.iet_events.fragments.AdminTaskFragment$1
+ com.example.iet_events.fragments.AdminTaskFragment$2
 com/example/iet_events/service/FirebaseMessageReceiver.java
  com.example.iet_events.service.FirebaseMessageReceiver
 com/example/iet_events/models/UserID.java
  com.example.iet_events.models.UserID
+com/example/iet_events/utils/MeetingAdapter.java
+ com.example.iet_events.utils.MeetingAdapter
+ com.example.iet_events.utils.MeetingAdapter$ViewHolder
 com/example/iet_events/fragments/ProfileFragment.java
  com.example.iet_events.fragments.ProfileFragment
 com/example/iet_events/ui/ProfileActivity.java
