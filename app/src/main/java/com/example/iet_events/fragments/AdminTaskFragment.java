@@ -121,8 +121,9 @@ public class AdminTaskFragment extends Fragment {
                 taskMap.put("Status", "Not Done");
                 DatabaseReference mRef = FirebaseDatabase.getInstance().getReference("Users");
                 for (Users user : uploadTaskUserList) {
-                    mRef.child(user.UserID).child("Task").child(task_code).setValue(taskMap);
+                    mRef.child(user.UserID).child("Tasks").child(task_code).setValue(taskMap);
                 }
+                getActivity().finish();
             } else {
                 Snackbar.make(v, "Please enter the code & description", Snackbar.LENGTH_LONG).show();
             }

@@ -11,12 +11,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.iet_events.R;
+import com.example.iet_events.database.TaskDatabase;
 import com.example.iet_events.utils.TaskAdapter;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-
-import static com.example.iet_events.MainActivity.taskList;
 
 public class DashboardFragment extends Fragment {
 
@@ -31,7 +30,7 @@ public class DashboardFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_dashboard, container, false);
         ButterKnife.bind(this, root);
 
-        TaskAdapter taskAdapter = new TaskAdapter(taskList);
+        TaskAdapter taskAdapter = new TaskAdapter(TaskDatabase.getInstance(getContext()).TaskDao().loadAllTasks());
         LinearLayoutManager mLayout = new LinearLayoutManager(getContext());
         tasks_recycler_view.setHasFixedSize(true);
         tasks_recycler_view.setLayoutManager(mLayout);

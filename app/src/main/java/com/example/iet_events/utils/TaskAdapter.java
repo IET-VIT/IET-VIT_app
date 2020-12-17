@@ -13,13 +13,15 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.iet_events.MainActivity;
 import com.example.iet_events.R;
+import com.example.iet_events.database.TaskDatabase;
 import com.example.iet_events.models.Task;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.List;
+
+import static com.example.iet_events.MainActivity.USER_ID;
 
 public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
 
@@ -57,15 +59,15 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
                             .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface paramDialogInterface, int paramInt) {
-//                                    FirebaseDatabase.getInstance().getReference("Users").child().child("Tasks")
-//                                            .child(task.TaskId + "/Status").setValue("Done")
-//                                            .addOnCompleteListener(new OnCompleteListener<Void>() {
-//                                                @Override
-//                                                public void onComplete(@NonNull com.google.android.gms.tasks.Task<Void> task) {
-//                                                    holder.task_item_layout.setBackgroundColor(context.getResources().getColor(R.color.lightGreen));
-//                                                    MainActivity.taskList.get(position).setStatus("Done");
-//                                                }
-//                                            });
+                                    FirebaseDatabase.getInstance().getReference("Users").child(USER_ID).child("Tasks")
+                                            .child(task.TaskId + "/Status").setValue("Done")
+                                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                @Override
+                                                public void onComplete(@NonNull com.google.android.gms.tasks.Task<Void> firebaseTask) {
+                                                    holder.task_item_layout.setBackgroundColor(context.getResources().getColor(R.color.lightGreen));
+                                                    TaskDatabase.getInstance(context).TaskDao().updateTaskDone(task.getPrimary_key());
+                                                }
+                                            });
                                 }
                             }).setNegativeButton("No", new DialogInterface.OnClickListener() {
                         @Override

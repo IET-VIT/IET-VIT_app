@@ -93,7 +93,7 @@
 50        android:theme="@style/AppTheme" >
 50-->/Users/sukesh/AndroidStudioProjects/IET-Events/app/src/main/AndroidManifest.xml:15:9-40
 51        <activity android:name="com.example.iet_events.service.AlarmActivity" />
-51-->/Users/sukesh/AndroidStudioProjects/IET-Events/app/src/main/AndroidManifest.xml:16:9-68
+51-->/Users/sukesh/AndroidStudioProjects/IET-Events/app/src/main/AndroidManifest.xml:16:9-59
 51-->/Users/sukesh/AndroidStudioProjects/IET-Events/app/src/main/AndroidManifest.xml:16:19-56
 52        <activity android:name="com.example.iet_events.ui.AdminActivity" />
 52-->/Users/sukesh/AndroidStudioProjects/IET-Events/app/src/main/AndroidManifest.xml:17:9-54
