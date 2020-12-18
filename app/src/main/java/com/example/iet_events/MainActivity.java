@@ -28,6 +28,7 @@ import com.example.iet_events.fragments.HomeFragment;
 import com.example.iet_events.fragments.ProfileFragment;
 import com.example.iet_events.ui.AdminActivity;
 import com.example.iet_events.ui.LoginActivity;
+import com.example.iet_events.ui.SetupActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -105,37 +106,43 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if(currentUser != null) {
             SharedPreferences.Editor Ed = loginPrefs.edit();
+            SharedPreferences setupCheck = getSharedPreferences("SetupCheck", MODE_PRIVATE);
 
-            if(name_check == null) {
-                showLoadingDialog();
-                DatabaseReference mRef = FirebaseDatabase.getInstance().getReference("Users");
-                mRef.child(USER_ID).addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        if (snapshot.exists()) {
-                            NAME = String.valueOf(snapshot.child("Name").getValue());
-                            Ed.putString("Name", NAME);
-                            ROLE = String.valueOf(snapshot.child("Role").getValue());
-                            Ed.putString("Role", ROLE);
-                            Ed.putString("FCM_Token", String.valueOf(snapshot.child("FCM_Token").getValue()));
-                            Ed.commit();
-                            nav_name_text.setText(NAME);
-                            nav_mail_text.setText(currentUser.getEmail());
+            if (setupCheck.getString("Setup", "null").equals("No")){
+                startActivity(new Intent(MainActivity.this, SetupActivity.class));
+                finish();
+            } else {
+                if (name_check == null) {
+                    showLoadingDialog();
+                    DatabaseReference mRef = FirebaseDatabase.getInstance().getReference("Users");
+                    mRef.child(USER_ID).addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            if (snapshot.exists()) {
+                                NAME = String.valueOf(snapshot.child("Name").getValue());
+                                Ed.putString("Name", NAME);
+                                ROLE = String.valueOf(snapshot.child("Role").getValue());
+                                Ed.putString("Role", ROLE);
+                                Ed.putString("FCM_Token", String.valueOf(snapshot.child("FCM_Token").getValue()));
+                                Ed.commit();
+                                nav_name_text.setText(NAME);
+                                nav_mail_text.setText(currentUser.getEmail());
+                                loadingDialog.dismiss();
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+                            Toast.makeText(MainActivity.this, "Database Error : " + error.getMessage(), Toast.LENGTH_SHORT).show();
                             loadingDialog.dismiss();
                         }
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-                        Toast.makeText(MainActivity.this, "Database Error : " + error.getMessage(), Toast.LENGTH_SHORT).show();
-                        loadingDialog.dismiss();
-                    }
-                });
-            }else {
-                NAME = loginPrefs.getString("Name",null);
-                ROLE = loginPrefs.getString("Role",null);
-                nav_name_text.setText(NAME);
-                nav_mail_text.setText(loginPrefs.getString("Email",null));
+                    });
+                } else {
+                    NAME = loginPrefs.getString("Name", null);
+                    ROLE = loginPrefs.getString("Role", null);
+                    nav_name_text.setText(NAME);
+                    nav_mail_text.setText(loginPrefs.getString("Email", null));
+                }
             }
         }else{
             sendToLogin();

@@ -64,8 +64,10 @@ public class HomeFragment extends Fragment {
         USER_ID = loginPrefs.getString("UserId", null);
 
         taskDatabase = TaskDatabase.getInstance(getContext());
-        fetchTasks(USER_ID);
-        fetchMeetings();
+        if(USER_ID != null) {
+            fetchTasks(USER_ID);
+            fetchMeetings();
+        }
 
         return root;
     }
@@ -93,7 +95,7 @@ public class HomeFragment extends Fragment {
 
         String token = FirebaseInstanceId.getInstance().getToken();
         SharedPreferences.Editor Ed = loginPrefs.edit();
-        if(!token.equals(loginPrefs.getString("FCM_Token", null))){
+        if(!token.equals(loginPrefs.getString("FCM_Token", "null"))){
             FirebaseDatabase.getInstance().getReference("Users").child(userId).child("FCM_Token").setValue(token)
                     .addOnCompleteListener(task -> {
                         Ed.putString("FCM_Token", token);
