@@ -12,6 +12,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.iet_events.MainActivity;
@@ -37,6 +38,7 @@ public class LoginActivity extends AppCompatActivity {
     @BindView(R.id.password_login_input) TextInputEditText password_login_input;
     @BindView(R.id.mail_login_button) Button mail_login_button;
     @BindView(R.id.go_to_register) Button go_to_register;
+    @BindView(R.id.loginProgress) ProgressBar loginProgress;
 
     private String TAG = "LoginActivity";
     private boolean otherLayoutOpened;
@@ -81,9 +83,7 @@ public class LoginActivity extends AppCompatActivity {
         go_to_register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Snackbar.make(v,"Getting Ready....Page Under Construction :)", Snackbar.LENGTH_LONG).show();
-                //TODO : Setup Register Activity
-//                startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
+                startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
             }
         });
 
@@ -104,6 +104,7 @@ public class LoginActivity extends AppCompatActivity {
                 if(email.isEmpty() || password.isEmpty()) {
                     Snackbar.make(v, "Please enter all the credentials", Snackbar.LENGTH_LONG).show();
                 }else{
+                    loginProgress.setVisibility(View.VISIBLE);
                     mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
@@ -111,12 +112,15 @@ public class LoginActivity extends AppCompatActivity {
                                 Ed.putString("UserId", mAuth.getUid());
                                 Ed.putString("Email", email);
                                 Ed.commit();
-                                startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                                Intent mainIntent = new Intent(LoginActivity.this, MainActivity.class);
+                                mainIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                startActivity(mainIntent);
                                 finish();
                             } else {
                                 Log.e(TAG, "signInWithEmail:failure", task.getException());
                                 Snackbar.make(v, "Authentication failed. Please contact administrator", Snackbar.LENGTH_LONG).show();
                             }
+                            loginProgress.setVisibility(View.GONE);
                         }
                     });
                 }
