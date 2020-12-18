@@ -19,6 +19,7 @@ import com.example.iet_events.R;
 import com.example.iet_events.database.UserDatabase;
 import com.example.iet_events.fragments.AddMeetingFragment;
 import com.example.iet_events.fragments.AdminTaskFragment;
+import com.example.iet_events.fragments.CheckTaskFragment;
 import com.example.iet_events.models.Users;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -74,7 +75,7 @@ public class AdminActivity extends AppCompatActivity {
             admin_frame.setVisibility(View.VISIBLE);
             admin_main_layout.setVisibility(View.GONE);
             isFrameOpen = true;
-//            getSupportFragmentManager().beginTransaction().replace(R.id.admin_frame, new CheckTaskFragment()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.admin_frame, new CheckTaskFragment()).commit();
         });
 
         meeting_card.setOnClickListener(v -> {

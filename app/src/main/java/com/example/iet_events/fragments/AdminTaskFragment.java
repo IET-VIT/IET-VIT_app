@@ -57,7 +57,7 @@ public class AdminTaskFragment extends Fragment {
         ButterKnife.bind(this, root);
 
         domain_spinner = root.findViewById(R.id.domain_spinner);
-        String[] items = new String[]{"All", "Board", "Admin", "Tech", "Design", "Media", "Publicity", "External", "Editorial"};
+        String[] items = new String[]{"All", "Board", "Administration", "Technical", "Design", "Media", "Publicity", "External", "Editorial"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, items);
         domain_spinner.setAdapter(adapter);
 
