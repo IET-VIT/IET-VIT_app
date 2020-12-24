@@ -51,6 +51,10 @@ _To be extended_
    - [x] Added FCM to the application
    - [x] Token generation/updation and database saving 
    - [x] Alarm creation for meeting when notification arrives
+- 17th, 18th December 2020
+   - [x] Added Email Registration
+   - [x] Added CheckTask Fragment 
+   - [x] Repo Clean-up and minor UI, bug fix
    
 ## 📚 Tech Stack:
 - <code><img height="38" src="https://i1.pngguru.com/preview/736/783/702/macos-app-icons-android-studio-png-icon.jpg"></code> Android Studio
