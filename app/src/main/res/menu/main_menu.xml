@@ -5,5 +5,5 @@
         android:id="@+id/action_admin"
         app:showAsAction="ifRoom"
         android:icon="@drawable/ic_admin_nav"
-        android:title="Admin" />
+        android:title="Board Access" />
 </menu>
