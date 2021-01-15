@@ -1,6 +1,7 @@
 package com.example.iet_events.fragments;
 
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -11,10 +12,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.bumptech.glide.Glide;
 import com.example.iet_events.R;
 import com.example.iet_events.database.TaskDatabase;
 import com.example.iet_events.models.Meeting;
@@ -49,6 +52,10 @@ public class HomeFragment extends Fragment {
     @BindView(R.id.loadingAnimationMeeting) LottieAnimationView loadingAnimationMeeting;
     @BindView(R.id.meeting_recycler_view) RecyclerView meeting_recycler_view;
 
+    @BindView(R.id.eventName) TextView eventName;
+    @BindView(R.id.eventDate) TextView eventDate;
+    @BindView(R.id.eventLogo) ImageView eventLogo;
+
     private SharedPreferences loginPrefs;
     private TaskDatabase taskDatabase;
 
@@ -68,6 +75,27 @@ public class HomeFragment extends Fragment {
             fetchTasks(USER_ID);
             fetchMeetings();
         }
+
+        DatabaseReference eventRef = FirebaseDatabase.getInstance().getReference("Events");
+        eventRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    for (DataSnapshot event : snapshot.getChildren()) {
+                        eventName.setText(String.valueOf(event.child("Name").getValue()));
+                        eventDate.setText(String.valueOf(event.child("Date").getValue()));
+                        Uri eventLogoURL = Uri.parse(String.valueOf(event.child("Link").getValue()));
+                        Glide.with(getContext()).load(eventLogoURL).into(eventLogo);
+                        break;
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(getContext(), "Database Error : " + error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
 
         return root;
     }
