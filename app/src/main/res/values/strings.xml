@@ -19,7 +19,7 @@
 
     <string name="upcoming_events_text"><![CDATA[Upcoming Events & Workshops]]></string>
     <string name="no_meetings_upcoming">No meetings upcoming</string>
-    <string name="FCM_API_KEY">AAAAlyxo9UA:APA91bFZ76YAsrr4Zdw5d-HdeJWsOt1o8CnQyOMPwo-erlgM7dY22C8nXis8KSJ0b9fJ6J3ArGVntByQcgCizEr_L9X3qRUByGoHyz3wC8vIQ1MYgM0VfJOXvCz_9zFkFGGvECymkFIq</string>
+    <string name="FCM_API_KEY">FCM_API-key</string>
 
     <string name="register">Register</string>
     <string name="email_register">Register with E-mail</string>
