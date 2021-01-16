@@ -13,17 +13,21 @@
         android:roundIcon="@drawable/iet_logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.SetupActivity"></activity>
+        <activity android:name=".ui.SetupActivity"
+            android:screenOrientation="portrait"/>
         <activity android:name=".service.AlarmActivity" />
-        <activity android:name=".ui.AdminActivity" />
-        <activity android:name=".ui.ProfileActivity" />
+        <activity android:name=".ui.AdminActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".ui.RegisterActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.DarkActionBar" />
         <activity
             android:name=".ui.LoginActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.DarkActionBar" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -39,6 +43,7 @@
 
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/Base.Theme.AppCompat" />
     </application>
 

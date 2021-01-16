@@ -19,7 +19,7 @@
 
     <string name="upcoming_events_text"><![CDATA[Upcoming Events & Workshops]]></string>
     <string name="no_meetings_upcoming">No meetings upcoming</string>
-    <string name="FCM_API_KEY">FCM_API-key</string>
+    <string name="FCM_API_KEY">FCM_API_key</string>
 
     <string name="register">Register</string>
     <string name="email_register">Register with E-mail</string>

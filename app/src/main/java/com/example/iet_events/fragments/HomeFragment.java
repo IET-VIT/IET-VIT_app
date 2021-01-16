@@ -74,28 +74,8 @@ public class HomeFragment extends Fragment {
         if(USER_ID != null) {
             fetchTasks(USER_ID);
             fetchMeetings();
+            updateDisplayEvent();
         }
-
-        DatabaseReference eventRef = FirebaseDatabase.getInstance().getReference("Events");
-        eventRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.exists()){
-                    for (DataSnapshot event : snapshot.getChildren()) {
-                        eventName.setText(String.valueOf(event.child("Name").getValue()));
-                        eventDate.setText(String.valueOf(event.child("Date").getValue()));
-                        Uri eventLogoURL = Uri.parse(String.valueOf(event.child("Link").getValue()));
-                        Glide.with(getContext()).load(eventLogoURL).into(eventLogo);
-                        break;
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(getContext(), "Database Error : " + error.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
 
         return root;
     }
@@ -196,5 +176,28 @@ public class HomeFragment extends Fragment {
             tasks_status_text.setText("All Tasks Completed");
         }
         loadingAnimationTask.setVisibility(View.GONE);
+    }
+
+    private void updateDisplayEvent() {
+        DatabaseReference eventRef = FirebaseDatabase.getInstance().getReference("Events");
+        eventRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    for (DataSnapshot event : snapshot.getChildren()) {
+                        eventName.setText(String.valueOf(event.child("Name").getValue()));
+                        eventDate.setText(String.valueOf(event.child("Date").getValue()));
+                        Uri eventLogoURL = Uri.parse(String.valueOf(event.child("Link").getValue()));
+                        Glide.with(getContext()).load(eventLogoURL).into(eventLogo);
+                        break;
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(getContext(), "Database Error : " + error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

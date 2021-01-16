@@ -28,6 +28,7 @@ import butterknife.ButterKnife;
 public class SetupActivity extends AppCompatActivity {
 
     @BindView(R.id.name_setup_input) TextInputEditText name_setup_input;
+    @BindView(R.id.phone_setup_input) TextInputEditText phone_setup_input;
     @BindView(R.id.domain_setup_group) RadioGroup domain_setup_group;
     @BindView(R.id.setup_complete_btn) Button setup_complete_btn;
     @BindView(R.id.setup_progress_bar) ProgressBar setup_progress_bar;
@@ -48,13 +49,15 @@ public class SetupActivity extends AppCompatActivity {
             RadioButton radioButton = findViewById(domain_setup_group.getCheckedRadioButtonId());
             String domain_text = radioButton.getText().toString();
             String name_text = String.valueOf(name_setup_input.getText()).trim();
+            String phone_text = String.valueOf(phone_setup_input.getText()).trim();
 
-            if(name_text.isEmpty())
-                Snackbar.make(view, "Oops! Looks like you have forgotten your name.", Snackbar.LENGTH_LONG).show();
+            if(name_text.isEmpty() || phone_text.isEmpty())
+                Snackbar.make(view, "Oops! Looks like you have forgotten your name and number.", Snackbar.LENGTH_LONG).show();
             else {
                 setup_progress_bar.setVisibility(View.VISIBLE);
                 Map<String,String> userMap = new HashMap<>();
                 userMap.put("Name", name_text);
+                userMap.put("Number", phone_text);
                 userMap.put("Role", domain_text);
                 FirebaseDatabase.getInstance().getReference("Users").child(user.getUid())
                         .setValue(userMap).addOnCompleteListener(task -> {
