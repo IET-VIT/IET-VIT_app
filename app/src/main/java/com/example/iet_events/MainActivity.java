@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private SharedPreferences loginPrefs;
     private String name_check;
 
-    public static String NAME, ROLE, USER_ID;
+    public static String NAME, ROLE, USER_ID, EMAIL, PHONE;
     public static Dialog loadingDialog;
 
     @Override
@@ -123,6 +123,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                                 Ed.putString("Name", NAME);
                                 ROLE = String.valueOf(snapshot.child("Role").getValue());
                                 Ed.putString("Role", ROLE);
+                                PHONE = String.valueOf(snapshot.child("Number").getValue());
+                                Ed.putString("Phone", PHONE);
                                 Ed.putString("FCM_Token", String.valueOf(snapshot.child("FCM_Token").getValue()));
                                 Ed.commit();
                                 nav_name_text.setText(NAME);
@@ -140,8 +142,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 } else {
                     NAME = loginPrefs.getString("Name", null);
                     ROLE = loginPrefs.getString("Role", null);
+                    EMAIL = loginPrefs.getString("Email", null);
+                    PHONE = loginPrefs.getString("Phone", null);
                     nav_name_text.setText(NAME);
-                    nav_mail_text.setText(loginPrefs.getString("Email", null));
+                    nav_mail_text.setText(EMAIL);
                 }
             }
         }else{
@@ -206,6 +210,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Ed.putString("UserId",null);
         Ed.putString("Email",null);
         Ed.putString("Role",null);
+        Ed.putString("Phone",null);
         Ed.putString("FCM_Token",null);
         Ed.commit();
         Intent intent = new Intent(MainActivity.this, LoginActivity.class);
