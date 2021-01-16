@@ -125,6 +125,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                                 Ed.putString("Role", ROLE);
                                 PHONE = String.valueOf(snapshot.child("Number").getValue());
                                 Ed.putString("Phone", PHONE);
+                                Ed.putString("Photo", String.valueOf(snapshot.child("Profile").getValue()));
                                 Ed.putString("FCM_Token", String.valueOf(snapshot.child("FCM_Token").getValue()));
                                 Ed.commit();
                                 nav_name_text.setText(NAME);
@@ -211,6 +212,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Ed.putString("Email",null);
         Ed.putString("Role",null);
         Ed.putString("Phone",null);
+        Ed.putString("Photo",null);
         Ed.putString("FCM_Token",null);
         Ed.commit();
         Intent intent = new Intent(MainActivity.this, LoginActivity.class);
