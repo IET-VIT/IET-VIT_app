@@ -25,6 +25,7 @@ import android.widget.Toast;
 
 import com.example.iet_events.fragments.DashboardFragment;
 import com.example.iet_events.fragments.HomeFragment;
+import com.example.iet_events.fragments.PeersFragment;
 import com.example.iet_events.fragments.ProfileFragment;
 import com.example.iet_events.ui.AdminActivity;
 import com.example.iet_events.ui.LoginActivity;
@@ -61,6 +62,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private String name_check;
 
     public static String NAME, ROLE, USER_ID, EMAIL, PHONE;
+    public static boolean USERS_CHECK, USERS_DATA;
     public static Dialog loadingDialog;
 
     @Override
@@ -112,6 +114,24 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(new Intent(MainActivity.this, SetupActivity.class));
                 finish();
             } else {
+                if(USERS_CHECK == false) {
+                    FirebaseDatabase.getInstance().getReference("UsersAdded").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            if(Integer.parseInt(String.valueOf(snapshot.getValue())) == loginPrefs.getInt("UserCount",0))
+                                USERS_DATA = true;
+                            else
+                                USERS_DATA = false;
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+                            Toast.makeText(MainActivity.this, "Database Error : " + error.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                    USERS_CHECK = true;
+                }
+
                 if (name_check == null) {
                     showLoadingDialog();
                     DatabaseReference mRef = FirebaseDatabase.getInstance().getReference("Users");
@@ -170,6 +190,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.nav_dashboard:
                 getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment, new DashboardFragment()).commit();
+                break;
+            case R.id.nav_users:
+                getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment, new PeersFragment()).commit();
                 break;
             case R.id.nav_profile:
                 getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment, new ProfileFragment()).commit();

@@ -8,7 +8,7 @@ public class Users extends UserID{
 
     @PrimaryKey(autoGenerate = true)
     private int primary_key;
-    private String Name, Role;
+    private String Name, Role, Profile, Instagram, LinkedIn, Github;
     private String FCM_Token;
 
     public Users() {
@@ -36,6 +36,38 @@ public class Users extends UserID{
 
     public void setFCM_Token(String FCM_Token) {
         this.FCM_Token = FCM_Token;
+    }
+
+    public String getProfile() {
+        return Profile;
+    }
+
+    public void setProfile(String profile) {
+        Profile = profile;
+    }
+
+    public String getInstagram() {
+        return Instagram;
+    }
+
+    public void setInstagram(String instagram) {
+        Instagram = instagram;
+    }
+
+    public String getLinkedIn() {
+        return LinkedIn;
+    }
+
+    public void setLinkedIn(String linkedIn) {
+        LinkedIn = linkedIn;
+    }
+
+    public String getGithub() {
+        return Github;
+    }
+
+    public void setGithub(String github) {
+        Github = github;
     }
 
     public int getPrimary_key() {
