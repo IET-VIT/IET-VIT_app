@@ -62,6 +62,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private String name_check;
 
     public static String NAME, ROLE, USER_ID, EMAIL, PHONE;
+    public static boolean USERS_CHECK, USERS_DATA;
     public static Dialog loadingDialog;
 
     @Override
@@ -113,6 +114,24 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(new Intent(MainActivity.this, SetupActivity.class));
                 finish();
             } else {
+                if(USERS_CHECK == false) {
+                    FirebaseDatabase.getInstance().getReference("UsersAdded").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            if(Integer.parseInt(String.valueOf(snapshot.getValue())) == loginPrefs.getInt("UserCount",0))
+                                USERS_DATA = true;
+                            else
+                                USERS_DATA = false;
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+                            Toast.makeText(MainActivity.this, "Database Error : " + error.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                    USERS_CHECK = true;
+                }
+
                 if (name_check == null) {
                     showLoadingDialog();
                     DatabaseReference mRef = FirebaseDatabase.getInstance().getReference("Users");

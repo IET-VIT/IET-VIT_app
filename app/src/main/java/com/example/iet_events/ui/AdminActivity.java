@@ -1,6 +1,7 @@
 package com.example.iet_events.ui;
 
 import android.app.ProgressDialog;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -30,6 +31,8 @@ import com.google.firebase.database.ValueEventListener;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.example.iet_events.MainActivity.USERS_DATA;
+
 public class AdminActivity extends AppCompatActivity {
 
     @BindView(R.id.add_tasks_card) CardView add_tasks_card;
@@ -57,8 +60,11 @@ public class AdminActivity extends AppCompatActivity {
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Loading");
         progressDialog.setCancelable(false);
-        progressDialog.show();
-        getAllUsers();
+
+        if(!USERS_DATA) {
+            getAllUsers();
+            progressDialog.show();
+        }
 
         if (getSupportActionBar() != null){
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -82,6 +88,9 @@ public class AdminActivity extends AppCompatActivity {
     }
 
     private void getAllUsers() {
+        SharedPreferences loginPrefs = getSharedPreferences("LoginInfo", MODE_PRIVATE);
+        SharedPreferences.Editor Ed = loginPrefs.edit();
+
         UserDatabase userDatabase = UserDatabase.getInstance(AdminActivity.this);
         userDatabase.UserDao().clearDb();
         DatabaseReference mRef = FirebaseDatabase.getInstance().getReference("Users");
@@ -93,6 +102,9 @@ public class AdminActivity extends AppCompatActivity {
                     Users user = data.getValue(Users.class).withID(userID);
                     userDatabase.UserDao().insertUser(user);
                 }
+                USERS_DATA = true;
+                Ed.putInt("UserCount",userDatabase.UserDao().getUserCount());
+                Ed.commit();
                 progressDialog.dismiss();
             }
 

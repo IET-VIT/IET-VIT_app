@@ -1,5 +1,6 @@
 package com.example.iet_events.fragments;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.iet_events.R;
@@ -27,9 +29,13 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static android.content.Context.MODE_PRIVATE;
+import static com.example.iet_events.MainActivity.USERS_DATA;
+
 public class PeersFragment extends Fragment {
 
     @BindView(R.id.peers_recycler_view) RecyclerView peers_recycler_view;
+    @BindView(R.id.peers_progress_bar) ProgressBar peers_progress_bar;
 
     public PeersFragment() {
     }
@@ -40,6 +46,19 @@ public class PeersFragment extends Fragment {
 
         ButterKnife.bind(this, root);
 
+        if(!USERS_DATA)
+            getAllUsers();
+        else
+            setupRecyclerView();
+
+        return root;
+    }
+
+    private void getAllUsers() {
+        SharedPreferences loginPrefs = getContext().getSharedPreferences("LoginInfo", MODE_PRIVATE);
+        SharedPreferences.Editor Ed = loginPrefs.edit();
+
+        peers_progress_bar.setVisibility(View.VISIBLE);
         UserDatabase userDatabase = UserDatabase.getInstance(getContext());
         userDatabase.UserDao().clearDb();
         DatabaseReference mRef = FirebaseDatabase.getInstance().getReference("Users");
@@ -51,19 +70,19 @@ public class PeersFragment extends Fragment {
                     Users user = data.getValue(Users.class).withID(userID);
                     userDatabase.UserDao().insertUser(user);
                 }
-//                progressDialog.dismiss();
+                USERS_DATA = true;
+                Ed.putInt("UserCount",userDatabase.UserDao().getUserCount());
+                Ed.commit();
                 setupRecyclerView();
+                peers_progress_bar.setVisibility(View.GONE);
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 Toast.makeText(getContext(),"Problem in retrieving data",Toast.LENGTH_LONG).show();
-//                progressDialog.dismiss();
-//                finish();
+                peers_progress_bar.setVisibility(View.GONE);
             }
         });
-
-        return root;
     }
 
     private void setupRecyclerView() {
