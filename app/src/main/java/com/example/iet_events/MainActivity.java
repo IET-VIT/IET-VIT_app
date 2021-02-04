@@ -25,6 +25,7 @@ import android.widget.Toast;
 
 import com.example.iet_events.fragments.DashboardFragment;
 import com.example.iet_events.fragments.HomeFragment;
+import com.example.iet_events.fragments.PeersFragment;
 import com.example.iet_events.fragments.ProfileFragment;
 import com.example.iet_events.ui.AdminActivity;
 import com.example.iet_events.ui.LoginActivity;
@@ -170,6 +171,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.nav_dashboard:
                 getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment, new DashboardFragment()).commit();
+                break;
+            case R.id.nav_users:
+                getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment, new PeersFragment()).commit();
                 break;
             case R.id.nav_profile:
                 getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment, new ProfileFragment()).commit();

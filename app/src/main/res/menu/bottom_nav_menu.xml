@@ -14,10 +14,15 @@
 
         <item
             android:id="@+id/nav_dashboard"
-            android:enabled="true"
             android:icon="@drawable/ic_dashboard_nav"
             android:title="Dashboard"
             app:showAsAction="withText" />
+
+        <item
+            android:id="@+id/nav_users"
+            android:icon="@drawable/ic_peer_nav"
+            android:title="Peers"
+            app:showAsAction="withText"/>
 
     </group>
 
