@@ -13,9 +13,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -47,10 +50,11 @@ public class AddMeetingFragment extends Fragment{
     @BindView(R.id.time_select_btn) TextView time_select_btn;
     @BindView(R.id.meeting_desc_text) EditText meeting_desc_text;
     @BindView(R.id.loc_link_text) EditText loc_link_text;
+    @BindView(R.id.domain_spinner_meet) Spinner domain_spinner_meet;
     @BindView(R.id.add_meeting_btn) Button add_meeting_btn;
 
     int hourUpdate, minuteUpdate;
-    String hourMeeting, minuteMeeting, dateMeeting;
+    String hourMeeting, minuteMeeting, dateMeeting, role;
 
     public AddMeetingFragment() {
     }
@@ -107,6 +111,21 @@ public class AddMeetingFragment extends Fragment{
             timePickerDialog.show();
         });
 
+        String[] items = new String[]{"All", "Board", "Administration", "Technical", "Design", "Media", "Publicity", "External", "Editorial"};
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, items);
+        domain_spinner_meet.setAdapter(adapter);
+
+        domain_spinner_meet.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                role = items[position];
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+            }
+        });
+
         add_meeting_btn.setOnClickListener(v -> {
             String meeting_desc = meeting_desc_text.getText().toString();
             String meeting_link_text = loc_link_text.getText().toString();
@@ -115,13 +134,14 @@ public class AddMeetingFragment extends Fragment{
                 meetingMap.put("Description",meeting_desc);
                 meetingMap.put("Date", date_select_btn.getText().toString());
                 meetingMap.put("Time", time_select_btn.getText().toString());
+                meetingMap.put("For", role);
                 meetingMap.put("Location_Link", meeting_link_text);
                 FirebaseDatabase.getInstance().getReference("Meetings").child(String.valueOf(System.currentTimeMillis()))
                         .setValue(meetingMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         Toast.makeText(getContext(),"Meeting added and Notified!",Toast.LENGTH_LONG).show();
-                        new sendMessage().execute(hourMeeting, minuteMeeting, dateMeeting);
+                        new sendMessage().execute(hourMeeting, minuteMeeting, dateMeeting, role);
                         getActivity().finish();
                     }
                 });
@@ -145,12 +165,15 @@ public class AddMeetingFragment extends Fragment{
                 conn.setRequestProperty("Authorization", "key=" + apiKey);
                 conn.setDoOutput(true);
                 JSONObject message = new JSONObject();
-                message.put("registration_ids", new JSONArray(UserDatabase.getInstance(getContext()).UserDao().loadFCMTokens()));
-                message.put("priority", "high");
+                if(voids[4].equals("All"))
+                    message.put("registration_ids", new JSONArray(UserDatabase.getInstance(getContext()).UserDao().loadFCMTokens()));
+                else
+                    message.put("registration_ids", new JSONArray(UserDatabase.getInstance(getContext()).UserDao().loadFCMTokensByRole(voids[4])));
+                message.put("priority","high");
 
                 JSONObject notification = new JSONObject();
-                notification.put("title", "Meeting Time!");
-                notification.put("body", "Meeting scheduled at " + voids[0] + ":" + voids[1] + " on " + voids[2]);
+                notification.put("title","Meeting Time!");
+                notification.put("body","Meeting scheduled at " + voids[0] + ":" + voids[1] + " on " + voids[2]);
                 notification.put("hourMeeting", voids[0]);
                 notification.put("minuteMeeting", voids[1]);
                 message.put("data", notification);

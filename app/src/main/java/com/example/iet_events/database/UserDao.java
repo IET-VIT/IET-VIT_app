@@ -30,6 +30,9 @@ public interface UserDao {
     @Query("SELECT FCM_Token FROM userDb WHERE FCM_Token IS NOT null")
     List<String> loadFCMTokens();
 
+    @Query("SELECT FCM_Token FROM userDb WHERE Role = :role AND FCM_Token IS NOT null")
+    List<String> loadFCMTokensByRole(String role);
+
     @Query("SELECT COUNT(*) FROM userDb")
     int getUserCount();
 }

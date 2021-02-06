@@ -40,6 +40,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import static android.content.Context.MODE_PRIVATE;
+import static com.example.iet_events.MainActivity.ROLE;
 import static com.example.iet_events.MainActivity.USER_ID;
 
 public class HomeFragment extends Fragment {
@@ -126,7 +127,7 @@ public class HomeFragment extends Fragment {
                             Date date1 = new SimpleDateFormat("EEEE, MMM d yyyy h:mm aa").parse(dateAndTime);
                             if ((date1.getTime() + 490000) < System.currentTimeMillis())
                                 meetingsToBeDeleted.add(meetingSnap.getKey());
-                            else {
+                            else if(meetingSnap.child("For").getValue().equals("All") || meetingSnap.child("For").getValue().equals(ROLE)){
                                 meetingList.add(meetingSnap.getValue(Meeting.class));
                                 meetingCount[0] += 1;
                             }

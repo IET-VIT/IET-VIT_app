@@ -23,6 +23,7 @@ public class AdminTaskAdapter extends RecyclerView.Adapter<AdminTaskAdapter.View
 
     private Context context;
     private List<Users> fullList;
+    private boolean isSelectedAll;
 
     public AdminTaskAdapter(List<Users> fullList){
         this.fullList = fullList;
@@ -43,6 +44,14 @@ public class AdminTaskAdapter extends RecyclerView.Adapter<AdminTaskAdapter.View
         holder.checkbox_card_item.setOnCheckedChangeListener(null);
         holder.name_card_item.setText(user.getName());
         holder.role_card_item.setText(user.getRole());
+
+        if (!isSelectedAll){
+            holder.checkbox_card_item.setChecked(false);
+            holder.checkbox_card_item.setEnabled(true);
+        }else {
+            holder.checkbox_card_item.setChecked(true);
+            holder.checkbox_card_item.setEnabled(false);
+        }
 
         holder.checkbox_card_item.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -69,6 +78,16 @@ public class AdminTaskAdapter extends RecyclerView.Adapter<AdminTaskAdapter.View
         this.fullList = list;
         notifyDataSetChanged();
     }
+
+    public void selectAll(){
+        isSelectedAll = true;
+        notifyDataSetChanged();
+    }
+    public void unselectAll(){
+        isSelectedAll = false;
+        notifyDataSetChanged();
+    }
+
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
