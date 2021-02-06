@@ -16,21 +16,31 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/admin_task_description">
 
+        <CheckBox
+            android:id="@+id/task_select_all"
+            android:layout_width="32dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="12dp"
+            android:layout_weight="1"
+            android:text=" All" />
+
         <EditText
             android:id="@+id/name_filter"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
-            android:layout_margin="16dp"
+            android:layout_gravity="center"
+            android:layout_margin="12dp"
             android:layout_weight="3"
             android:hint="Name"
             android:inputType="textPersonName" />
 
         <Spinner
             android:id="@+id/domain_spinner"
-            android:layout_width="70dp"
+            android:layout_width="90dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_margin="16dp"
+            android:layout_margin="8dp"
             android:layout_weight="1"
             android:fontFamily="@font/acme"
             android:textColor="@color/colorPrimary" />

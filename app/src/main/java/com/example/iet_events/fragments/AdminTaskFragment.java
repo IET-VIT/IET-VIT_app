@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
 
@@ -41,6 +42,7 @@ public class AdminTaskFragment extends Fragment {
     @BindView(R.id.admin_task_description) EditText admin_task_description;
     @BindView(R.id.admin_task_code) EditText admin_task_code;
     @BindView(R.id.name_filter) EditText name_filter;
+    @BindView(R.id.task_select_all) CheckBox task_select_all;
 
     public static List<Users> uploadTaskUserList;
     private List<Users> usersList;
@@ -109,6 +111,21 @@ public class AdminTaskFragment extends Fragment {
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+        task_select_all.setOnCheckedChangeListener((checkBox, isChecked) -> {
+            if(isChecked) {
+                adminTaskAdapter.selectAll();
+                uploadTaskUserList = new ArrayList<>(usersList);
+                domain_spinner.setEnabled(false);
+                name_filter.setEnabled(false);
+            }
+            else {
+                adminTaskAdapter.unselectAll();
+                uploadTaskUserList.clear();
+                domain_spinner.setEnabled(true);
+                name_filter.setEnabled(true);
             }
         });
 

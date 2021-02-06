@@ -17,12 +17,12 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.iet_events.fragments.DashboardFragment;
 import com.example.iet_events.fragments.HomeFragment;
 import com.example.iet_events.fragments.PeersFragment;
@@ -47,6 +47,7 @@ import com.journeyapps.barcodescanner.BarcodeEncoder;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -56,6 +57,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @BindView(R.id.qr_code_button) FloatingActionButton qr_code_button;
     @BindView(R.id.nav_bottom_lyt_link) LinearLayout nav_bottom_lyt_link;
     private TextView nav_name_text, nav_mail_text;
+    private CircleImageView nav_profile_image;
 
     private FirebaseAuth mAuth;
     private SharedPreferences loginPrefs;
@@ -84,15 +86,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         nav_view.setNavigationItemSelectedListener(this);
         nav_name_text = nav_view.getHeaderView(0).findViewById(R.id.nav_name_text);
         nav_mail_text = nav_view.getHeaderView(0).findViewById(R.id.nav_mail_text);
+        nav_profile_image = nav_view.getHeaderView(0).findViewById(R.id.nav_profile_image);
 
         mAuth = FirebaseAuth.getInstance();
 
-        qr_code_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                qrDialogBox();
-            }
-        });
+        qr_code_button.setOnClickListener(v -> qrDialogBox());
 
         nav_bottom_lyt_link.setOnClickListener(v -> startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.ietvit.com"))));
     }
@@ -145,11 +143,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                                 Ed.putString("Role", ROLE);
                                 PHONE = String.valueOf(snapshot.child("Number").getValue());
                                 Ed.putString("Phone", PHONE);
-                                Ed.putString("Photo", String.valueOf(snapshot.child("Profile").getValue()));
+                                String dp_url = String.valueOf(snapshot.child("Profile").getValue());
+                                Ed.putString("Photo", dp_url);
                                 Ed.putString("FCM_Token", String.valueOf(snapshot.child("FCM_Token").getValue()));
                                 Ed.commit();
                                 nav_name_text.setText(NAME);
                                 nav_mail_text.setText(currentUser.getEmail());
+                                if(dp_url != null)
+                                    Glide.with(MainActivity.this).load(dp_url).into(nav_profile_image);
                                 loadingDialog.dismiss();
                             }
                         }
@@ -167,6 +168,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     PHONE = loginPrefs.getString("Phone", null);
                     nav_name_text.setText(NAME);
                     nav_mail_text.setText(EMAIL);
+                    String dp_url = loginPrefs.getString("Photo",null);
+                    if(dp_url != null)
+                        Glide.with(MainActivity.this).load(dp_url).into(nav_profile_image);
                 }
             }
         }else{

@@ -2,7 +2,7 @@ package com.example.iet_events.models;
 
 public class Meeting {
 
-    private String Date, Description, Time, Location_Link;
+    private String Date, Description, Time, Location_Link, For;
 
     public Meeting() {
     }
@@ -37,5 +37,13 @@ public class Meeting {
 
     public void setLocation_Link(String location_Link) {
         Location_Link = location_Link;
+    }
+
+    public String getFor() {
+        return For;
+    }
+
+    public void setFor(String aFor) {
+        For = aFor;
     }
 }
