@@ -12,6 +12,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -20,7 +21,6 @@ import com.example.iet_events.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
-import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -34,8 +34,8 @@ public class LoginActivity extends AppCompatActivity {
     @BindView(R.id.emailLogin) TextView emailLogin;
     @BindView(R.id.googleLogin) TextView googleLogin;
     @BindView(R.id.githubLogin) TextView githubLogin;
-    @BindView(R.id.email_login_input) TextInputEditText email_login_input;
-    @BindView(R.id.password_login_input) TextInputEditText password_login_input;
+    @BindView(R.id.email_login_input) EditText email_login_input;
+    @BindView(R.id.password_login_input) EditText password_login_input;
     @BindView(R.id.mail_login_button) Button mail_login_button;
     @BindView(R.id.go_to_register) Button go_to_register;
     @BindView(R.id.loginProgress) ProgressBar loginProgress;

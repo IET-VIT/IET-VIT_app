@@ -30,6 +30,7 @@ import com.example.iet_events.fragments.ProfileFragment;
 import com.example.iet_events.ui.AdminActivity;
 import com.example.iet_events.ui.LoginActivity;
 import com.example.iet_events.ui.SetupActivity;
+import com.example.iet_events.ui.ThemeActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -112,7 +113,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(new Intent(MainActivity.this, SetupActivity.class));
                 finish();
             } else {
-                if(USERS_CHECK == false) {
+                if(!USERS_CHECK) {
                     FirebaseDatabase.getInstance().getReference("UsersAdded").addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -222,12 +223,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
-        if (item.getItemId() == R.id.action_admin) {
-            if(ROLE.equals("Board"))
-                startActivity(new Intent(MainActivity.this, AdminActivity.class));
-            else
-                Toast.makeText(MainActivity.this, "Work harder to be a Board member :)",Toast.LENGTH_LONG).show();
-            return true;
+        switch (item.getItemId()) {
+
+            case R.id.action_admin:
+                if (ROLE.equals("Board"))
+                    startActivity(new Intent(MainActivity.this, AdminActivity.class));
+                else
+                    Toast.makeText(MainActivity.this, "Work harder to be a Board member :)", Toast.LENGTH_LONG).show();
+                return true;
+
+            case R.id.action_theme:
+                startActivity(new Intent(MainActivity.this, ThemeActivity.class));
+                break;
         }
         return false;
     }

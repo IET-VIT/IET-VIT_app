@@ -2,9 +2,10 @@
   <library name="Gradle: com.google.firebase:firebase-abt:20.0.0@aar">
     <CLASSES>
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/0d2b7159e3ae17728bdb086d4bbca487/jetified-firebase-abt-20.0.0/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/da03c31f14bdc1943a90e9c526a6da74/jetified-firebase-abt-20.0.0/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/da03c31f14bdc1943a90e9c526a6da74/jetified-firebase-abt-20.0.0/AndroidManifest.xml" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/da03c31f14bdc1943a90e9c526a6da74/jetified-firebase-abt-20.0.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/b74a3736751e222e538640e702e99c67/jetified-firebase-abt-20.0.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/b74a3736751e222e538640e702e99c67/jetified-firebase-abt-20.0.0/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/b74a3736751e222e538640e702e99c67/jetified-firebase-abt-20.0.0/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.firebase/firebase-abt/20.0.0/9f3c04ba2773ad6c6c2096b26f2ec4d2f1af977a/firebase-abt-20.0.0-javadoc.jar!/" />

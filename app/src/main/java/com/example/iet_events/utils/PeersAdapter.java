@@ -47,23 +47,35 @@ public class PeersAdapter extends RecyclerView.Adapter<PeersAdapter.ViewHolder>{
 
         holder.peer_github.setOnClickListener(view -> {
             String github = user.getGithub();
-            if(github != null)
-                context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(user.getGithub())));
-            else
+            if(github != null) {
+                try {
+                    context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(user.getGithub())));
+                }catch (Exception e) {
+                    Toast.makeText(context, "Error in the link", Toast.LENGTH_SHORT).show();
+                }
+            }else
                 Snackbar.make(view,"Not Available", Snackbar.LENGTH_SHORT).show();
         });
         holder.peer_insta.setOnClickListener(view -> {
             String insta = user.getInstagram();
-            if(insta != null)
-                context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(user.getInstagram())));
-            else
+            if(insta != null) {
+                try {
+                    context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(user.getInstagram())));
+                }catch (Exception e){
+                    Toast.makeText(context, "Error in the link", Toast.LENGTH_SHORT).show();
+                }
+            }else
                 Snackbar.make(view,"Not Available", Snackbar.LENGTH_SHORT).show();
         });
         holder.peer_linkedin.setOnClickListener(view -> {
             String linkedIn = user.getLinkedIn();
-            if(linkedIn != null)
-                context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(user.getLinkedIn())));
-            else
+            if(linkedIn != null) {
+                try {
+                    context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(user.getLinkedIn())));
+                } catch (Exception e) {
+                    Toast.makeText(context, "Error in the link", Toast.LENGTH_SHORT).show();
+                }
+            }else
                 Snackbar.make(view,"Not Available", Snackbar.LENGTH_SHORT).show();
         });
     }

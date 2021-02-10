@@ -9,13 +9,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 
 import com.example.iet_events.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
-import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -24,9 +24,9 @@ import butterknife.ButterKnife;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    @BindView(R.id.email_register_input) TextInputEditText email_register_input;
-    @BindView(R.id.password_register_input) TextInputEditText password_register_input;
-    @BindView(R.id.confirm_pass_input) TextInputEditText confirm_pass_input;
+    @BindView(R.id.email_register_input) EditText email_register_input;
+    @BindView(R.id.password_register_input) EditText password_register_input;
+    @BindView(R.id.confirm_pass_input) EditText confirm_pass_input;
     @BindView(R.id.mail_register_button) Button mail_register_button;
     @BindView(R.id.register_progress_bar) ProgressBar register_progress_bar;
 

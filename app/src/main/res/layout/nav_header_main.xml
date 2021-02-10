@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/side_nav_bar"
@@ -15,7 +16,7 @@
         android:id="@+id/nav_profile_image"
         android:layout_width="120dp"
         android:layout_height="120dp"
-        android:layout_gravity="center"
+        android:layout_gravity="center|start"
         android:contentDescription="@string/nav_header_desc"
         android:foregroundGravity="center"
         android:paddingTop="@dimen/nav_vertical_spacing_image"
@@ -26,18 +27,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:fontFamily="@font/oneplus_slate"
         android:foregroundGravity="center"
-        android:gravity="center"
+        android:gravity="center|start"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
         android:text="@string/nav_header_title"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textSize="18dp" />
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/nav_mail_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:layout_gravity="center|start"
         android:foregroundGravity="center"
         android:gravity="center"
         android:text="@string/nav_header_subtitle" />
