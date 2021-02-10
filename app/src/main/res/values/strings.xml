@@ -17,6 +17,7 @@
     <string name="menu_dashboard">Dashboard</string>
     <string name="menu_users">Peers</string>
     <string name="menu_profile">Profile</string>
+    <string name="menu_logout">Logout</string>
 
     <string name="upcoming_events_text"><![CDATA[Upcoming Events & Workshops]]></string>
     <string name="no_meetings_upcoming">No meetings upcoming</string>
