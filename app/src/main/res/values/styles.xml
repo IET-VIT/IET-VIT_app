@@ -2,23 +2,39 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:statusBarColor">@color/colorPrimary</item>
+        <item name="colorPrimary">#57B7DF</item>
+        <item name="colorPrimaryDark">#0B2751</item>
+        <item name="colorAccent">#28B9E4</item>
+        <item name="android:statusBarColor">#2594C2</item>
     </style>
 
-    <style name="AppTheme.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-    </style>
+<!--    <style name="AppTheme.NoActionBar">-->
+<!--        <item name="windowActionBar">false</item>-->
+<!--        <item name="windowNoTitle">true</item>-->
+<!--    </style>-->
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
-    <style name="AppTheme.DarkActionBar">
-        <item name="android:statusBarColor">@color/colorPrimaryDark</item>
+    <style name="AppTheme_Purple" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">#964F9F</item>
+        <item name="colorPrimaryDark">#53274E</item>
+        <item name="colorAccent">#A046B4</item>
+        <item name="android:statusBarColor">#552A4F</item>
     </style>
 
+    <style name="AppTheme_Orange" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">#EE7520</item>
+        <item name="colorPrimaryDark">#671F20</item>
+        <item name="colorAccent">#EE7520</item>
+        <item name="android:statusBarColor">#853637</item>
+    </style>
+
+    <style name="AppTheme_Green" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">#AAC81E</item>
+        <item name="colorPrimaryDark">#10322B</item>
+        <item name="colorAccent">#AAC81E</item>
+        <item name="android:statusBarColor">#3D880E</item>
+    </style>
 </resources>

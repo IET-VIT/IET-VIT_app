@@ -27,7 +27,7 @@
         android:fontFamily="@font/acme"
         android:gravity="center"
         android:text="Add Event"
-        android:textColor="@color/colorPrimaryDark"
+        android:textColor="?attr/colorPrimaryDark"
         android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -63,7 +63,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
-        app:hintTextColor="@color/colorPrimaryDark"
+        app:hintTextColor="?attr/colorPrimaryDark"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView3">

@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/acme"
         android:text="Your QR Code"
-        android:textColor="@color/colorPrimary"
+        android:textColor="?attr/colorPrimary"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

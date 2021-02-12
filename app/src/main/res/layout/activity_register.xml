@@ -40,7 +40,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@color/colorAccent"
+        android:background="?attr/colorAccent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -52,7 +52,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/roboto_medium"
             android:text="@string/email_register"
-            android:textColor="@color/colorPrimaryDark"
+            android:textColor="?attr/colorPrimaryDark"
             android:textSize="30sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

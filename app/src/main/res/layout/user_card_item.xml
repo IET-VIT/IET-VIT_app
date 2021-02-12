@@ -44,7 +44,7 @@
             android:layout_marginEnd="16dp"
             android:fontFamily="@font/pacifico"
             android:text="Loading"
-            android:textColor="@color/colorAccent"
+            android:textColor="?attr/colorAccent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

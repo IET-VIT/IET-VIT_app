@@ -13,7 +13,9 @@
         android:roundIcon="@drawable/iet_logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.ThemeActivity" />
+        <activity
+            android:name=".ui.ThemeActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".ui.SetupActivity"
             android:screenOrientation="portrait" />
@@ -23,12 +25,10 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.RegisterActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.DarkActionBar" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.LoginActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.DarkActionBar" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait">

@@ -40,13 +40,28 @@ public class LoginActivity extends AppCompatActivity {
     @BindView(R.id.go_to_register) Button go_to_register;
     @BindView(R.id.loginProgress) ProgressBar loginProgress;
 
-    private String TAG = "LoginActivity";
+    private final String TAG = "LoginActivity";
     private boolean otherLayoutOpened;
     private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        SharedPreferences app_theme_prefs = getSharedPreferences("AppTheme",MODE_PRIVATE);
+        String appTheme = app_theme_prefs.getString("AppThemeColor", "BlueTheme");
+
+        switch (appTheme) {
+            case "PurpleTheme":
+                setTheme(R.style.AppTheme_Purple);
+                break;
+            case "GreenTheme":
+                setTheme(R.style.AppTheme_Green);
+                break;
+            case "OrangeTheme":
+                setTheme(R.style.AppTheme_Orange);
+                break;
+        }
         setContentView(R.layout.activity_login);
 
         ButterKnife.bind(this);

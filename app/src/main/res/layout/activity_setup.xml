@@ -14,7 +14,7 @@
         android:layout_marginTop="42dp"
         android:fontFamily="@font/acme"
         android:text="Account Setup"
-        android:textColor="@color/colorPrimaryDark"
+        android:textColor="?attr/colorPrimaryDark"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -77,7 +77,7 @@
         android:layout_marginTop="12dp"
         android:fontFamily="@font/poppins_semibold"
         android:text="Choose your Domain"
-        android:textColor="@color/colorPrimaryDark"
+        android:textColor="?attr/colorPrimaryDark"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout3" />
@@ -97,7 +97,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
-            android:buttonTint="@color/colorPrimaryDark"
+            android:buttonTint="?attr/colorPrimaryDark"
             android:checked="true"
             android:text="Administration"
             android:textColor="@color/Black"
@@ -108,7 +108,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
-            android:buttonTint="@color/colorPrimaryDark"
+            android:buttonTint="?attr/colorPrimaryDark"
             android:text="Technical"
             android:textColor="@color/Black"
             android:textStyle="bold" />
@@ -118,7 +118,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
-            android:buttonTint="@color/colorPrimaryDark"
+            android:buttonTint="?attr/colorPrimaryDark"
             android:text="Editorial"
             android:textColor="@color/Black"
             android:textStyle="bold" />
@@ -128,7 +128,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
-            android:buttonTint="@color/colorPrimaryDark"
+            android:buttonTint="?attr/colorPrimaryDark"
             android:text="Design"
             android:textColor="@color/Black"
             android:textStyle="bold" />
@@ -139,7 +139,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
-            android:buttonTint="@color/colorPrimaryDark"
+            android:buttonTint="?attr/colorPrimaryDark"
             android:text="Publicity"
             android:textColor="@color/Black"
             android:textStyle="bold" />
@@ -149,7 +149,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
-            android:buttonTint="@color/colorPrimaryDark"
+            android:buttonTint="?attr/colorPrimaryDark"
             android:text="External"
             android:textColor="@color/Black"
             android:textStyle="bold" />
@@ -159,7 +159,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
-            android:buttonTint="@color/colorPrimaryDark"
+            android:buttonTint="?attr/colorPrimaryDark"
             android:text="Media"
             android:textColor="@color/Black"
             android:textStyle="bold" />
@@ -181,7 +181,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
-            android:buttonTint="@color/colorPrimaryDark"
+            android:buttonTint="?attr/colorPrimaryDark"
             android:checked="true"
             android:text="Administration"
             android:textColor="@color/Black"
@@ -192,7 +192,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
-            android:buttonTint="@color/colorPrimaryDark"
+            android:buttonTint="?attr/colorPrimaryDark"
             android:text="Technical"
             android:textColor="@color/Black"
             android:textStyle="bold" />
@@ -202,7 +202,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
-            android:buttonTint="@color/colorPrimaryDark"
+            android:buttonTint="?attr/colorPrimaryDark"
             android:text="Editorial"
             android:textColor="@color/Black"
             android:textStyle="bold" />
@@ -212,7 +212,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
-            android:buttonTint="@color/colorPrimaryDark"
+            android:buttonTint="?attr/colorPrimaryDark"
             android:text="Design"
             android:textColor="@color/Black"
             android:textStyle="bold" />
@@ -223,7 +223,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
-            android:buttonTint="@color/colorPrimaryDark"
+            android:buttonTint="?attr/colorPrimaryDark"
             android:text="Publicity"
             android:textColor="@color/Black"
             android:textStyle="bold" />
@@ -233,7 +233,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
-            android:buttonTint="@color/colorPrimaryDark"
+            android:buttonTint="?attr/colorPrimaryDark"
             android:text="External"
             android:textColor="@color/Black"
             android:textStyle="bold" />
@@ -243,7 +243,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
-            android:buttonTint="@color/colorPrimaryDark"
+            android:buttonTint="?attr/colorPrimaryDark"
             android:text="Media"
             android:textColor="@color/Black"
             android:textStyle="bold" />

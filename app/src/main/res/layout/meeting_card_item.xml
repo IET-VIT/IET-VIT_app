@@ -20,7 +20,7 @@
             android:layout_marginTop="8dp"
             android:fontFamily="@font/poppins_semibold"
             android:text="Description"
-            android:textColor="@color/colorPrimary"
+            android:textColor="?attr/colorPrimary"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -32,7 +32,7 @@
             android:layout_marginTop="8dp"
             android:fontFamily="@font/acme"
             android:text="Date &amp; Time"
-            android:textColor="@color/colorPrimaryDark"
+            android:textColor="?attr/colorPrimaryDark"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/meet_desc_item" />
 
