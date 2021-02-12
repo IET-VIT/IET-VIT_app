@@ -11,13 +11,13 @@ _To be extended_
 - [x] Tasks (Separate for Admins and others)
 - [x] Meetings
 - [ ] Messaging (Room SQL)
-- [ ] Media & Live Streaming
-- [ ] Event timeline
+- [x] Events Addition
 - [x] QR code generator
-- [ ] Quizzes
+- [x] Themes
+- [ ] Dark-Mode/Night-Mode
 - [ ] Landing page/Loading page
 - [ ] About IET-VIT and the Events
-- [ ] Profile Page
+- [x] Profile Page
 - [ ] FAQ’s
 - [x] Notifications
 
