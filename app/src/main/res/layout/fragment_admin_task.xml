@@ -44,7 +44,7 @@
             android:layout_margin="8dp"
             android:layout_weight="1"
             android:fontFamily="@font/acme"
-            android:textColor="@color/colorPrimary" />
+            android:textColor="?attr/colorPrimary" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -101,7 +101,7 @@
         android:layout_marginTop="16dp"
         android:fontFamily="@font/berkshire_swash"
         android:text="Task Description :"
-        android:textColor="@color/colorPrimaryDark"
+        android:textColor="?attr/colorPrimaryDark"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

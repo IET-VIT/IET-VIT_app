@@ -26,7 +26,7 @@ import static com.example.iet_events.MainActivity.USER_ID;
 public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
 
     private Context context;
-    private List<Task> taskList;
+    private final List<Task> taskList;
 
     public TaskAdapter(List<Task> taskList) {
         this.taskList = taskList;
@@ -48,7 +48,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
 
         String status = task.getStatus();
         if(status.equals("Done"))
-            holder.task_item_layout.setBackgroundColor(context.getResources().getColor(R.color.lightGreen));
+            holder.task_item_layout.setBackgroundColor(context.getResources().getColor(R.color.paleGreen));
 
         holder.task_item_layout.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
@@ -64,7 +64,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
                                             .addOnCompleteListener(new OnCompleteListener<Void>() {
                                                 @Override
                                                 public void onComplete(@NonNull com.google.android.gms.tasks.Task<Void> firebaseTask) {
-                                                    holder.task_item_layout.setBackgroundColor(context.getResources().getColor(R.color.lightGreen));
+                                                    holder.task_item_layout.setBackgroundColor(context.getResources().getColor(R.color.paleGreen));
                                                     TaskDatabase.getInstance(context).TaskDao().updateTaskDone(task.getPrimary_key());
                                                 }
                                             });
@@ -90,8 +90,9 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView task_desc, task_role;
-        private ConstraintLayout task_item_layout;
+        private final TextView task_desc;
+        private final TextView task_role;
+        private final ConstraintLayout task_item_layout;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

@@ -32,7 +32,7 @@
             android:layout_marginEnd="12dp"
             android:fontFamily="@font/poppins_semibold"
             android:text="Peer Name"
-            android:textColor="@color/colorPrimaryDark"
+            android:textColor="?attr/colorPrimaryDark"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/linearLayout3"
             app:layout_constraintStart_toEndOf="@+id/peer_profile"

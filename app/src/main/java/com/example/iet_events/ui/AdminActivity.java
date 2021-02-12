@@ -49,6 +49,21 @@ public class AdminActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        SharedPreferences app_theme_prefs = getSharedPreferences("AppTheme",MODE_PRIVATE);
+        String appTheme = app_theme_prefs.getString("AppThemeColor", "BlueTheme");
+
+        switch (appTheme) {
+            case "PurpleTheme":
+                setTheme(R.style.AppTheme_Purple);
+                break;
+            case "GreenTheme":
+                setTheme(R.style.AppTheme_Green);
+                break;
+            case "OrangeTheme":
+                setTheme(R.style.AppTheme_Orange);
+                break;
+        }
         setContentView(R.layout.activity_admin);
 
         ButterKnife.bind(this);

@@ -25,7 +25,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class PeersAdapter extends RecyclerView.Adapter<PeersAdapter.ViewHolder>{
 
     private Context context;
-    private List<Users> usersList;
+    private final List<Users> usersList;
 
     public PeersAdapter(List<Users> usersList) {
         this.usersList = usersList;
@@ -87,9 +87,11 @@ public class PeersAdapter extends RecyclerView.Adapter<PeersAdapter.ViewHolder>{
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
-        private TextView peer_name;
-        private CircleImageView peer_profile;
-        private ImageView peer_github, peer_insta, peer_linkedin;
+        private final TextView peer_name;
+        private final CircleImageView peer_profile;
+        private final ImageView peer_github;
+        private final ImageView peer_insta;
+        private final ImageView peer_linkedin;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

@@ -91,8 +91,9 @@ public class AdminTaskAdapter extends RecyclerView.Adapter<AdminTaskAdapter.View
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView name_card_item, role_card_item;
-        private CheckBox checkbox_card_item;
+        private final TextView name_card_item;
+        private final TextView role_card_item;
+        private final CheckBox checkbox_card_item;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

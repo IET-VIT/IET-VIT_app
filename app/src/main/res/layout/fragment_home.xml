@@ -15,7 +15,7 @@
         android:layout_marginTop="16dp"
         android:fontFamily="@font/oneplus_sans"
         android:text="Upcoming Meetings"
-        android:textColor="@color/colorPrimaryDark"
+        android:textColor="?attr/colorPrimaryDark"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -72,7 +72,7 @@
         android:layout_marginTop="32dp"
         android:fontFamily="@font/oneplus_sans"
         android:text="Tasks to be done"
-        android:textColor="@color/colorPrimaryDark"
+        android:textColor="?attr/colorPrimaryDark"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -136,7 +136,7 @@
                 android:layout_marginRight="8dp"
                 android:fontFamily="@font/poppins_semibold"
                 android:text="Tasks Remaining"
-                android:textColor="@color/colorPrimary" />
+                android:textColor="?attr/colorPrimary" />
 
         </LinearLayout>
 
@@ -150,7 +150,7 @@
         android:layout_marginTop="32dp"
         android:fontFamily="@font/oneplus_sans"
         android:text="@string/upcoming_events_text"
-        android:textColor="@color/colorPrimaryDark"
+        android:textColor="?attr/colorPrimaryDark"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -182,8 +182,8 @@
 
                 <ImageView
                     android:id="@+id/eventLogo"
-                    android:layout_width="150dp"
-                    android:layout_height="90dp"
+                    android:layout_width="140dp"
+                    android:layout_height="100dp"
                     android:src="@drawable/event" />
             </androidx.cardview.widget.CardView>
 
@@ -208,7 +208,7 @@
                 android:layout_marginRight="8dp"
                 android:gravity="center"
                 android:text="This is a SAMPLE Event"
-                android:textColor="@color/colorPrimaryDark"
+                android:textColor="?attr/colorPrimaryDark"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/cardView4"

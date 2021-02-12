@@ -17,7 +17,7 @@ import java.util.List;
 public class MeetingAdapter extends RecyclerView.Adapter<MeetingAdapter.ViewHolder>{
 
     private Context context;
-    private List<Meeting> meetingList;
+    private final List<Meeting> meetingList;
 
     public MeetingAdapter(List<Meeting> meetingList) {
         this.meetingList = meetingList;
@@ -46,7 +46,9 @@ public class MeetingAdapter extends RecyclerView.Adapter<MeetingAdapter.ViewHold
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
-        private TextView meet_desc_item, meet_time_item, meet_link_item;
+        private final TextView meet_desc_item;
+        private final TextView meet_time_item;
+        private final TextView meet_link_item;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
