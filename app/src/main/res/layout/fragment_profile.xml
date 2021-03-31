@@ -133,7 +133,7 @@
             android:layout_marginTop="20dp"
             android:fontFamily="@font/acme"
             android:gravity="center"
-            android:text="Secondary Role"
+            android:text="Domain"
             android:textColor="@color/White"
             android:textSize="20sp"
             app:layout_constraintStart_toEndOf="@+id/imageView9"

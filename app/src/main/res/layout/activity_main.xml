@@ -71,13 +71,13 @@
                     android:textSize="16sp" />
 
                 <ImageView
+                    android:id="@+id/nav_iet_logo"
                     android:layout_width="40dp"
                     android:layout_height="36dp"
                     android:layout_gravity="bottom"
                     android:layout_marginStart="4dp"
                     android:fontFamily="@font/acme"
                     android:src="@drawable/iet_logo_blue"
-                    android:textColor="?attr/colorPrimary"
                     android:textSize="24sp" />
 
             </LinearLayout>
