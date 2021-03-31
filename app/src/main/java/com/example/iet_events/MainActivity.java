@@ -57,12 +57,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @BindView(R.id.main_toolbar) Toolbar main_toolbar;
     @BindView(R.id.qr_code_button) FloatingActionButton qr_code_button;
     @BindView(R.id.nav_bottom_lyt_link) LinearLayout nav_bottom_lyt_link;
+    @BindView(R.id.nav_iet_logo) ImageView nav_iet_logo;
     private TextView nav_name_text, nav_mail_text;
     private CircleImageView nav_profile_image;
 
     private FirebaseAuth mAuth;
     private SharedPreferences loginPrefs;
-    private String name_check;
 
     public static String NAME, ROLE, USER_ID, EMAIL, PHONE;
     public static boolean USERS_CHECK, USERS_DATA;
@@ -86,8 +86,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 setTheme(R.style.AppTheme_Orange);
                 break;
         }
-        setContentView(R.layout.activity_main);
 
+        setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         setSupportActionBar(main_toolbar);
 
@@ -109,6 +109,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         qr_code_button.setOnClickListener(v -> qrDialogBox());
 
         nav_bottom_lyt_link.setOnClickListener(v -> startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.ietvit.com"))));
+
+        switch (appTheme) {
+            case "PurpleTheme":
+                nav_iet_logo.setImageResource(R.drawable.iet_logo_purple);
+                break;
+            case "GreenTheme":
+                nav_iet_logo.setImageResource(R.drawable.iet_logo_green);
+                break;
+            case "OrangeTheme":
+                nav_iet_logo.setImageResource(R.drawable.iet_logo_orange);
+                break;
+        }
     }
 
     @Override
@@ -116,7 +128,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onStart();
 
         loginPrefs = getSharedPreferences("LoginInfo", MODE_PRIVATE);
-        name_check = loginPrefs.getString("Name", null);
+        String name_check = loginPrefs.getString("Name", null);
         USER_ID = loginPrefs.getString("UserId", null);
 
         FirebaseUser currentUser = mAuth.getCurrentUser();
